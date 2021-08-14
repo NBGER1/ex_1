@@ -1,4 +1,5 @@
 ﻿using GizmoLab.Gameplay;
+using GizmoLab.Infrastructure.Database;
 using UnityEngine;
 using VSCodeEditor;
 
@@ -18,7 +19,11 @@ namespace GizmoLab.Infrastructure
         {
             _gameCore = new AliensGameCore();
             Database.PlayerPrefsController.Instance.LoadData();
-            Database.LocalDataController.Instance.LoadLocalGameData("Assets/Resources/jsonData.json");
+          //  PlayerGameData.Instance.Health = 1000;
+           // PlayerGameData.Instance.Score = 500;
+           // PlayerGameData.Instance.Weapon = "SMG";
+           // Database.LocalDataController.Instance.SaveLocalGameData("Assets/Resources/jsonData.json");
+              Database.LocalDataController.Instance.LoadData("Assets/Resources/jsonData.json");
             //
         }
 

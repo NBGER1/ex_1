@@ -1,11 +1,26 @@
-﻿namespace GizmoLab.Infrastructure.Database
+﻿using System.IO;
+
+namespace GizmoLab.Infrastructure.Database
 {
     public abstract class Database
     {
         #region Functions
-        public abstract void SaveData();
-        public abstract void LoadData();
-        
+
+        public virtual void SaveData()
+        {
+        }
+
+        public virtual void LoadData()
+        {
+        }
+
+        public virtual void SaveData(string path)
+        {
+        }
+
+        public virtual void LoadData(string path)
+        {
+        }
 
         #endregion
     }

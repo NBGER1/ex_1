@@ -7,7 +7,7 @@ using Object = System.Object;
 
 namespace GizmoLab.Infrastructure.Database
 {
-    public class LocalDataController : Database, ILocalDataManager
+    public class LocalDataController : Database
     {
         #region Consts
 
@@ -28,21 +28,22 @@ namespace GizmoLab.Infrastructure.Database
 
         #region Functions
 
-        public override void SaveData()
+        public override void SaveData(string path)
         {
+            var data = PlayerGameData.Instance;
+            string jsonObj = JsonUtility.ToJson(data);
+            Debug.Log("JSON = " + jsonObj);
+            File.WriteAllText(path, jsonObj);
         }
 
-        public override void LoadData()
-        {
-        }
-
-        public void LoadLocalGameData(string path)
+        public override void LoadData(string path)
         {
             string jsonContent;
             jsonContent = File.ReadAllText(path);
-            // PlayerGameData.SetGameData(JsonUtility.FromJson<Array>(jsonContent));
-            PlayerGameData gamedata = PlayerGameData.Instance;
-            JsonUtility.FromJson<PlayerGameData>(jsonContent);
+            GameDataFormat gdf = JsonUtility.FromJson<GameDataFormat>(jsonContent);
+            PlayerGameData.Instance.Health = gdf._health;
+            PlayerGameData.Instance.Score = gdf._score;
+            PlayerGameData.Instance.Weapon = gdf._weapon;
             Debug.Log("Health loaded = " + PlayerGameData.Instance.Health);
             Debug.Log("Score loaded = " + PlayerGameData.Instance.Score);
             Debug.Log("Weapon loaded = " + PlayerGameData.Instance.Weapon);
@@ -57,5 +58,15 @@ namespace GizmoLab.Infrastructure.Database
         }
 
         #endregion
+    }
+
+    /**
+     * This class assists with serializing/deserializing of JSON game data
+     */
+    public class GameDataFormat
+    {
+        public float _health;
+        public int _score;
+        public string _weapon;
     }
 }

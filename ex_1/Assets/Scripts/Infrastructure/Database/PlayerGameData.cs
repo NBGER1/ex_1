@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using GizmoLab.Gameplay;
 using TMPro;
 using UnityEngine;
@@ -6,6 +7,7 @@ using Object = UnityEngine.Object;
 
 namespace GizmoLab.Infrastructure.Database
 {
+    [System.Serializable]
     public class PlayerGameData
     {
         #region Consts
@@ -21,9 +23,9 @@ namespace GizmoLab.Infrastructure.Database
 
         #region Fields
 
-        private string _weapon = "";
-        private float _health = 0;
-        private int _score = 0;
+        [SerializeField] private string _weapon = "";
+        [SerializeField] private float _health = 0;
+        [SerializeField] private int _score = 0;
 
         public float Health
         {
@@ -36,6 +38,7 @@ namespace GizmoLab.Infrastructure.Database
             get { return _score; }
             set { _score += value; }
         }
+
 
         public string Weapon
         {
