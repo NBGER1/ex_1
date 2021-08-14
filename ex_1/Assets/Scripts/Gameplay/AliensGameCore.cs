@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GizmoLab.Infrastructure.Database;
+using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
@@ -18,6 +19,7 @@ namespace GizmoLab.Gameplay
             Weapon weapon = new Rifle(1, 3, 5);
             Weapon weapon2 = new Shotgun(10, 5, 10);
             _player = new Player(weapon2);
+            PlayerPrefsController.Instance.LoadData();
         }
 
         public void Update()
