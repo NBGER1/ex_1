@@ -4,6 +4,16 @@ namespace GizmoLab.Gameplay
 {
     public class Shotgun : Weapon
     {
+        #region Constructors
+
+        public Shotgun(float cooldown, float reloadtime, float damage) : base(cooldown, reloadtime, damage)
+        {
+        }
+
+        #endregion
+
+        #region Functions
+
         public override void Reload()
         {
             Debug.Log("Reloading = " + ReloadTime);
@@ -15,8 +25,6 @@ namespace GizmoLab.Gameplay
             target.TakeDamage(Damage);
         }
 
-        public Shotgun(float cooldown, float reloadtime, float damage) : base(cooldown, reloadtime, damage)
-        {
-        }
+        #endregion
     }
 }

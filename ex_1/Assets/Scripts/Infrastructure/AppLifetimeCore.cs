@@ -8,10 +8,10 @@ namespace GizmoLab.Infrastructure
         #region Fields
 
         private AliensGameCore _gameCore;
-        
+
         #endregion
-        
-        #region Methods
+
+        #region Functions
 
         private void Awake()
         {
@@ -27,4 +27,3 @@ namespace GizmoLab.Infrastructure
         #endregion
     }
 }
-
