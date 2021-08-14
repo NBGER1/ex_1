@@ -1,6 +1,13 @@
-﻿namespace GizmoLab.Infrastructure.Database
+﻿using UnityEngine;
+using UnityEditor;
+using System.IO;
+using System;
+using GizmoLab.Gameplay;
+using Object = System.Object;
+
+namespace GizmoLab.Infrastructure.Database
 {
-    public class LocalDataController : Database, ILocalDatabase
+    public class LocalDataController : Database, ILocalDataManager
     {
         #region Consts
 
@@ -15,16 +22,11 @@
             get { return instance; }
         }
 
+        private string _path;
+
         #endregion
 
         #region Functions
-
-        private string _path;
-
-        public void SetPath(string path)
-        {
-            _path = path;
-        }
 
         public override void SaveData()
         {
@@ -32,6 +34,18 @@
 
         public override void LoadData()
         {
+        }
+
+        public void LoadLocalGameData(string path)
+        {
+            string jsonContent;
+            jsonContent = File.ReadAllText(path);
+            // PlayerGameData.SetGameData(JsonUtility.FromJson<Array>(jsonContent));
+            PlayerGameData gamedata = PlayerGameData.Instance;
+            JsonUtility.FromJson<PlayerGameData>(jsonContent);
+            Debug.Log("Health loaded = " + PlayerGameData.Instance.Health);
+            Debug.Log("Score loaded = " + PlayerGameData.Instance.Score);
+            Debug.Log("Weapon loaded = " + PlayerGameData.Instance.Weapon);
         }
 
         #endregion

@@ -1,7 +1,8 @@
 ﻿using GizmoLab.Gameplay;
 using UnityEngine;
+using VSCodeEditor;
 
-namespace GizmoLab.Infrastructure
+namespace GizmoLab.Infrastructure 
 {
     public class AppLifetimeCore : MonoBehaviour
     {
@@ -16,6 +17,8 @@ namespace GizmoLab.Infrastructure
         private void Awake()
         {
             _gameCore = new AliensGameCore();
+            Database.PlayerPrefsController.Instance.LoadData();
+            Database.LocalDataController.Instance.LoadLocalGameData("Assets/Resources/jsonData.json");
             //
         }
 

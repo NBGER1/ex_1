@@ -5,21 +5,42 @@ namespace GizmoLab.Gameplay
 {
     public class AliensGameCore
     {
-        #region Test
+        #region Fields
 
         private Player _player;
         private IDamageable _idamageable = new Box();
 
+        #endregion
+
+
+        #region Constructors
+
         public AliensGameCore()
-
-            #endregion
-
         {
-            //Init game
-            Weapon weapon = new Rifle(1, 3, 5);
-            Weapon weapon2 = new Shotgun(10, 5, 10);
-            _player = new Player(weapon2);
-            PlayerPrefsController.Instance.LoadData();
+            _player = new Player();
+            _player.Weapon = GetPlayerWeapon(PlayerGameData.Instance.Weapon);
+        }
+
+        #endregion
+
+        #region Functions
+
+        private Weapon GetPlayerWeapon(string weaponName)
+        {
+            switch (weaponName)
+            {
+                case "Rifle":
+                    return new Rifle(1, 1, 1);
+                    break;
+                case "Shotgun":
+                    return new Shotgun(1, 1, 1);
+                    break;
+                case "SMG":
+                    return new SMG(1, 1, 1);
+                    break;
+            }
+
+            return new Rifle(1, 1, 1);
         }
 
         public void Update()
@@ -34,5 +55,7 @@ namespace GizmoLab.Gameplay
                 _player.Reload();
             }
         }
+
+        #endregion
     }
 }

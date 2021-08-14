@@ -5,6 +5,8 @@
         #region Functions
         public abstract void SaveData();
         public abstract void LoadData();
+        
+
         #endregion
     }
 }
