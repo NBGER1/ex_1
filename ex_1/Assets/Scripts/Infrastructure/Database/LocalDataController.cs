@@ -22,8 +22,6 @@ namespace GizmoLab.Infrastructure.Database
             get { return instance; }
         }
 
-        private string _path;
-
         #endregion
 
         #region Functions
@@ -32,7 +30,6 @@ namespace GizmoLab.Infrastructure.Database
         {
             var data = PlayerGameData.Instance;
             string jsonObj = JsonUtility.ToJson(data);
-            Debug.Log("JSON = " + jsonObj);
             File.WriteAllText(path, jsonObj);
         }
 

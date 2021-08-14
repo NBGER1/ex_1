@@ -23,12 +23,16 @@ namespace GizmoLab.Infrastructure.Database
 
         public override void SaveData()
         {
-            //TODO Set prefs with "Set<Type>"
+            PlayerPrefs.SetInt("Score", PlayerGameData.Instance.Score);
+            PlayerPrefs.SetFloat("Health", PlayerGameData.Instance.Health);
+            PlayerPrefs.SetString("Weapon", PlayerGameData.Instance.Weapon);
         }
 
         public override void LoadData()
         {
-            //TODO Read prefs with "Get<Type>"
+            PlayerPrefs.GetInt("Score", PlayerGameData.Instance.Score);
+            PlayerPrefs.GetFloat("Health", PlayerGameData.Instance.Health);
+            PlayerPrefs.GetString("Weapon", PlayerGameData.Instance.Weapon);
         }
 
         #endregion

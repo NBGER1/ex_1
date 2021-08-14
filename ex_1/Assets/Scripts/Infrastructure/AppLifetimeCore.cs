@@ -1,15 +1,17 @@
-﻿using GizmoLab.Gameplay;
+﻿using System;
+using GizmoLab.Gameplay;
 using GizmoLab.Infrastructure.Database;
 using UnityEngine;
 using VSCodeEditor;
 
-namespace GizmoLab.Infrastructure 
+namespace GizmoLab.Infrastructure
 {
     public class AppLifetimeCore : MonoBehaviour
     {
         #region Fields
 
         private AliensGameCore _gameCore;
+        private string _localDataPath = "Assets/Resources/jsonData.json";
 
         #endregion
 
@@ -17,14 +19,15 @@ namespace GizmoLab.Infrastructure
 
         private void Awake()
         {
-            _gameCore = new AliensGameCore();
             Database.PlayerPrefsController.Instance.LoadData();
-          //  PlayerGameData.Instance.Health = 1000;
-           // PlayerGameData.Instance.Score = 500;
-           // PlayerGameData.Instance.Weapon = "SMG";
-           // Database.LocalDataController.Instance.SaveLocalGameData("Assets/Resources/jsonData.json");
-              Database.LocalDataController.Instance.LoadData("Assets/Resources/jsonData.json");
-            //
+            //# This function saves local data
+            // Database.LocalDataController.Instance.SaveLocalGameData(_localDataPath);
+            Database.LocalDataController.Instance.LoadData(_localDataPath);
+        }
+
+        private void Start()
+        {
+            _gameCore = new AliensGameCore();
         }
 
         private void Update()
