@@ -1,4 +1,5 @@
 ﻿using GizmoLab.Gameplay;
+using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
@@ -6,9 +7,9 @@ namespace GizmoLab.Gameplay
     {
         #region Functions
 
-        public override Obstacle GenerateObstacle()
+        public override GameObject Adjust(GameObject obstacle)
         {
-            Obstacle obstacle = new Obstacle(500);
+            obstacle.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
             return obstacle;
         }
 

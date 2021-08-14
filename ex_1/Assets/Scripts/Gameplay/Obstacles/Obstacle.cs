@@ -2,7 +2,7 @@
 
 namespace GizmoLab.Gameplay
 {
-    public class Obstacle : IDamageable
+    public class Obstacle : MonoBehaviour, IDamageable
     {
         #region Fields
 
