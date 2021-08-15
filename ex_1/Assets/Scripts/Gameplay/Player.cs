@@ -9,12 +9,6 @@ public class Player
 
     private Weapon _weapon;
 
-    public Weapon Weapon
-    {
-        get { return _weapon; }
-        set { _weapon = value; }
-    }
-
     #endregion
 
     #region Functions
@@ -27,6 +21,16 @@ public class Player
     public void Reload()
     {
         _weapon.Reload();
+    }
+
+    #endregion
+
+    #region Properties
+
+    public Weapon Weapon
+    {
+        get { return _weapon; }
+        set { _weapon = value; }
     }
 
     #endregion

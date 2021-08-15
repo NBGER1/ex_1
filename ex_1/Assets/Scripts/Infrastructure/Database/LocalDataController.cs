@@ -2,6 +2,7 @@
 using UnityEditor;
 using System.IO;
 using System;
+using System.Reflection;
 using GizmoLab.Gameplay;
 using Object = System.Object;
 
@@ -26,6 +27,11 @@ namespace GizmoLab.Infrastructure.Database
 
         #region Functions
 
+        private static object GetPropValue(object src, string propName)
+        {
+            return src.GetType().GetProperty(propName).GetValue(src, null);
+        }
+
         public override void SaveData(string path)
         {
             var data = PlayerGameData.Instance;
@@ -35,15 +41,14 @@ namespace GizmoLab.Infrastructure.Database
 
         public override void LoadData(string path)
         {
-            string jsonContent;
-            jsonContent = File.ReadAllText(path);
+            string jsonContent = File.ReadAllText(path);
             GameDataFormat gdf = JsonUtility.FromJson<GameDataFormat>(jsonContent);
             PlayerGameData.Instance.Health = gdf._health;
             PlayerGameData.Instance.Score = gdf._score;
             PlayerGameData.Instance.Weapon = gdf._weapon;
-            Debug.Log("Health loaded = " + PlayerGameData.Instance.Health);
-            Debug.Log("Score loaded = " + PlayerGameData.Instance.Score);
-            Debug.Log("Weapon loaded = " + PlayerGameData.Instance.Weapon);
+            PlayerGameData.Instance.Base_Ammo = gdf._baseAmmo;
+            PlayerGameData.Instance.Energy_Ammo = gdf._energyAmmo;
+            PlayerGameData.Instance.Explosive_Ammo = gdf._explosiveAmmo;
         }
 
         #endregion
@@ -62,8 +67,11 @@ namespace GizmoLab.Infrastructure.Database
      */
     public class GameDataFormat
     {
-        public float _health;
-        public int _score;
-        public string _weapon;
+        public float _health=100;
+        public int _score=0;
+        public string _weapon="";
+        public int _baseAmmo=0;
+        public int _explosiveAmmo=0;
+        public int _energyAmmo=0;
     }
 }
