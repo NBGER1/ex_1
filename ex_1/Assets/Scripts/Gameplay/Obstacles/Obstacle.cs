@@ -12,11 +12,6 @@ namespace GizmoLab.Gameplay
 
         #region Constructors
 
-        public Obstacle(float health)
-        {
-            _health = health;
-        }
-
         #endregion
 
         #region Functions
@@ -36,6 +31,7 @@ namespace GizmoLab.Gameplay
         public float Health
         {
             get { return _health; }
+            set { _health = value; }
         }
 
         #endregion

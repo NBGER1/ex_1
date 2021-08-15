@@ -10,6 +10,7 @@ namespace GizmoLab.Gameplay
 
         public virtual GameObject Create()
         {
+            Debug.Log("Instantiating a new obstacle.." + _obstaclePrefab);
             GameObject obstacle = Instantiate(_obstaclePrefab) as GameObject;
             return Adjust(obstacle);
         }

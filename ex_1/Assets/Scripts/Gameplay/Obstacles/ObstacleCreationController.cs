@@ -8,33 +8,34 @@ namespace GizmoLab.Gameplay
     {
         #region Fields
 
-        private ObstacleFactory _debrisFactory, _asteroidFactory;
+        private AsteroidObstacleFactory _asteroidObstacleFactory;
+        private DebrisObstacleFactory _debrisObstacleFactory;
 
         #endregion
 
-       
+
         #region Functions
+
         private void Awake()
         {
-            _debrisFactory = new AsteroidObstacleFactory();
-            _asteroidFactory = new DebrisObstacleFactory();
+            _asteroidObstacleFactory = gameObject.AddComponent<AsteroidObstacleFactory>();
+            _debrisObstacleFactory = gameObject.AddComponent<DebrisObstacleFactory>();
         }
 
         private void Start()
         {
             CreateRandomObstacle();
         }
-
+    
         private void CreateRandomObstacle()
         {
-            int randomObstacle = UnityEngine.Random.Range(0, 1);
-            if (randomObstacle > 0)
+            if (UnityEngine.Random.Range(0, 1) > 0)
             {
-                _debrisFactory.Create();
+                _debrisObstacleFactory.Create();
             }
             else
             {
-                _asteroidFactory.Create();
+                _asteroidObstacleFactory.Create();
             }
         }
 

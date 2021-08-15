@@ -1,5 +1,6 @@
 ﻿using GizmoLab.Gameplay;
 using UnityEngine;
+
 namespace GizmoLab.Gameplay
 {
     public class AsteroidObstacleFactory : ObstacleFactory
@@ -8,7 +9,9 @@ namespace GizmoLab.Gameplay
 
         public override GameObject Adjust(GameObject obstacle)
         {
+            Debug.Log("Obstacle is = " + obstacle);
             obstacle.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
+            obstacle.GetComponent<Obstacle>().Health = 500;
             return obstacle;
         }
 
