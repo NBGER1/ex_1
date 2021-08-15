@@ -2,7 +2,7 @@
 {
     public interface IEnergyAmmo
     {
-        #region Fields
+        #region Properties
 
         public float SlowRate { get; }
 

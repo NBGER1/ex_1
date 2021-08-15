@@ -2,7 +2,7 @@
 {
     public interface IBaseAmmo
     {
-        #region Fields
+        #region Properties
 
         public float Damage { get; }
 
