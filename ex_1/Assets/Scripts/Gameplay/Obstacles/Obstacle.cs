@@ -18,10 +18,7 @@ namespace GizmoLab.Gameplay
 
         public void TakeDamage(float damage)
         {
-            if (_health < 0) return;
-            if (_health - damage >= 0)
-                _health -= damage;
-            else _health = 0;
+            _health = Mathf.Max(0, _health - damage);
         }
 
         #endregion

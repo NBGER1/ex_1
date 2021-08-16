@@ -1,8 +1,7 @@
-﻿using System;
-using GizmoLab.Gameplay;
+﻿using GizmoLab.Gameplay;
 using GizmoLab.Infrastructure.Database;
+using Infrastructure.Database;
 using UnityEngine;
-using VSCodeEditor;
 
 namespace GizmoLab.Infrastructure
 {
@@ -11,7 +10,7 @@ namespace GizmoLab.Infrastructure
         #region Fields
 
         private AliensGameCore _gameCore;
-        private string _localDataPath = "Assets/Resources/jsonData.json";
+        private IDataManagement _database;
 
         #endregion
 
@@ -19,10 +18,9 @@ namespace GizmoLab.Infrastructure
 
         private void Awake()
         {
-            Database.PlayerPrefsController.Instance.LoadData();
-            //# This function saves local data
-            // Database.LocalDataController.Instance.SaveLocalGameData(_localDataPath);
-            Database.LocalDataController.Instance.LoadData(_localDataPath);
+            _database = new LocalDataController();
+            _database.LoadData();
+            //_database = new PlayerPrefsController();
         }
 
         private void Start()

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Runtime.Serialization;
-using GizmoLab.Gameplay;
-using TMPro;
-using UnityEngine;
-using Object = UnityEngine.Object;
+﻿using UnityEngine;
 
 namespace GizmoLab.Infrastructure.Database
 {
@@ -14,11 +9,6 @@ namespace GizmoLab.Infrastructure.Database
 
         private static readonly PlayerGameData instance = new PlayerGameData();
 
-        public static PlayerGameData Instance
-        {
-            get { return instance; }
-        }
-
         #endregion
 
         #region Fields
@@ -27,16 +17,26 @@ namespace GizmoLab.Infrastructure.Database
         [SerializeField] private float _health = 0;
         [SerializeField] private int _score = 0;
 
+        #endregion
+
+        #region Properties
+
+        public static PlayerGameData Instance
+        {
+            get { return instance; }
+        }
+
+
         public float Health
         {
             get { return _health; }
-            set { _health += value; }
+            set { _health = value; }
         }
 
         public int Score
         {
             get { return _score; }
-            set { _score += value; }
+            set { _score = value; }
         }
 
 
@@ -48,15 +48,14 @@ namespace GizmoLab.Infrastructure.Database
 
         #endregion
 
-        #region Constructors
-
-        private PlayerGameData()
-        {
-        }
-
-        #endregion
-
         #region Functions
+
+        public void Set(PlayerGameData gameData)
+        {
+            _health = gameData.Health;
+            _score = gameData.Score;
+            _weapon = gameData.Weapon;
+        }
 
         #endregion
     }

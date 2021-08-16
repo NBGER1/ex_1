@@ -3,55 +3,37 @@ using UnityEditor;
 using System.IO;
 using System;
 using GizmoLab.Gameplay;
+using Infrastructure.Database;
 using Object = System.Object;
 
 namespace GizmoLab.Infrastructure.Database
 {
-    public class LocalDataController : Database
+    public class LocalDataController : IDataManagement
     {
         #region Consts
 
-        private static readonly LocalDataController instance = new LocalDataController();
+        private const string LOCAL_DATA_PATH = "Assets/Resources/jsonData.json";
 
         #endregion
 
         #region Fields
 
-        public static LocalDataController Instance
-        {
-            get { return instance; }
-        }
-
         #endregion
 
         #region Functions
 
-        public override void SaveData(string path)
+        public void SaveData(string path = LOCAL_DATA_PATH)
         {
             var data = PlayerGameData.Instance;
             string jsonObj = JsonUtility.ToJson(data);
             File.WriteAllText(path, jsonObj);
         }
 
-        public override void LoadData(string path)
+        public void LoadData(string path = LOCAL_DATA_PATH)
         {
-            string jsonContent;
-            jsonContent = File.ReadAllText(path);
-            GameDataFormat gdf = JsonUtility.FromJson<GameDataFormat>(jsonContent);
-            PlayerGameData.Instance.Health = gdf._health;
-            PlayerGameData.Instance.Score = gdf._score;
-            PlayerGameData.Instance.Weapon = gdf._weapon;
-            Debug.Log("Health loaded = " + PlayerGameData.Instance.Health);
-            Debug.Log("Score loaded = " + PlayerGameData.Instance.Score);
-            Debug.Log("Weapon loaded = " + PlayerGameData.Instance.Weapon);
-        }
-
-        #endregion
-
-        #region Constructors
-
-        private LocalDataController()
-        {
+            var jsonContent = File.ReadAllText(path);
+            var data = JsonUtility.FromJson<PlayerGameData>(jsonContent);
+            PlayerGameData.Instance.Set(data);
         }
 
         #endregion

@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using GizmoLab.Infrastructure.Database;
+using UnityEngine;
 
-namespace GizmoLab.Infrastructure.Database
+namespace Infrastructure.Database
 {
-    public class PlayerPrefsController : Database
+    public class PlayerPrefsController : IDataManagement
     {
         #region Consts
 
-        private static readonly PlayerPrefsController instance = new PlayerPrefsController();
+        private const string PLAYER_PREFS_KEY = "player_data";
 
         #endregion
 
@@ -14,33 +15,30 @@ namespace GizmoLab.Infrastructure.Database
 
         #endregion
 
-        public static PlayerPrefsController Instance
-        {
-            get { return instance; }
-        }
-
         #region Functions
 
-        public override void SaveData()
+        private static PlayerGameData _LoadPlayerData()
         {
-            PlayerPrefs.SetInt("Score", PlayerGameData.Instance.Score);
-            PlayerPrefs.SetFloat("Health", PlayerGameData.Instance.Health);
-            PlayerPrefs.SetString("Weapon", PlayerGameData.Instance.Weapon);
+            if (!PlayerPrefs.HasKey(PLAYER_PREFS_KEY))
+            {
+                var defaultPlayerData = PlayerGameData.Instance;
+                var defaultPlayerDataJson = JsonUtility.ToJson(defaultPlayerData);
+                PlayerPrefs.SetString(PLAYER_PREFS_KEY, defaultPlayerDataJson);
+            }
+
+            var playerData = PlayerPrefs.GetString(PLAYER_PREFS_KEY);
+            return JsonUtility.FromJson<PlayerGameData>(playerData);
         }
 
-        public override void LoadData()
+        public void SaveData(string path = null)
         {
-            PlayerPrefs.GetInt("Score", PlayerGameData.Instance.Score);
-            PlayerPrefs.GetFloat("Health", PlayerGameData.Instance.Health);
-            PlayerPrefs.GetString("Weapon", PlayerGameData.Instance.Weapon);
+            string playerData = JsonUtility.ToJson(PlayerGameData.Instance);
+            PlayerPrefs.SetString(PLAYER_PREFS_KEY, playerData);
         }
 
-        #endregion
-
-        #region Constructors
-
-        private PlayerPrefsController()
+        public void LoadData(string path = null)
         {
+            PlayerGameData.Instance.Set(_LoadPlayerData());
         }
 
         #endregion
