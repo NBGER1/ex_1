@@ -1,21 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Core;
 using Gameplay.Player;
 using GizmoLab.Gameplay;
 using GizmoLab.Infrastructure.Database;
 using Infrastructure.Database;
 using UnityEngine;
 
-public class Player : IDamageable, IPlayer
+public class Player : MonoBehaviour, IDamageable, IPlayer
 {
     #region Fields
 
-    private Weapon _weapon;
+    private bool _isEnabled;
 
-    public Weapon Weapon
+
+    public bool IsEnabled
     {
-        get { return _weapon; }
-        set { _weapon = value; }
+        get { return _isEnabled; }
+        set { _isEnabled = value; }
     }
 
     #endregion
@@ -24,12 +26,14 @@ public class Player : IDamageable, IPlayer
 
     public void Fire(IDamageable target)
     {
-        //TODO: Player Fire
+        if (!_isEnabled) return;
+        Debug.Log("Player Class fire!");
     }
 
-    public void Move()
+    public void Move(float force)
     {
-        throw new System.NotImplementedException();
+        if (!_isEnabled) return;
+        transform.position += Vector3.right * force * Time.deltaTime * PlayerGameData.Instance.Speed;
     }
 
     public void TakeDamage(float damage)

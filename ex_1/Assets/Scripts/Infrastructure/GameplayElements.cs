@@ -1,7 +1,8 @@
-﻿using Infrastructure;
+﻿using Gameplay.Player;
+using InputControllers;
 using UnityEngine;
 
-namespace GizmoLab.Infrastructure
+namespace Infrastructure
 {
     public class GameplayElements : Singleton<GameplayElements>
     {
@@ -21,6 +22,9 @@ namespace GizmoLab.Infrastructure
         #endregion
 
         #region Properties
+
+        public IPlayer Player => _player;
+
         #endregion
     }
 }

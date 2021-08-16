@@ -4,12 +4,12 @@ using UnityEngine;
 
 namespace Services
 {
-    public class GameServices
+    public static class GameplayServices
     {
         #region Fields
 
         private static UnityCore _unityCore;
-
+        
         #endregion
 
         #region Methods
@@ -17,10 +17,12 @@ namespace Services
         public static void Initialize()
         {
             var go = new GameObject("UnityCore");
+            //# Prepare Updatables
             _unityCore = go.AddComponent<UnityCore>();
             InputController inputManager = new InputController();
+            //# Register Upatables
             _unityCore.RegisterUpdateable(inputManager);
-
+            
             Object.DontDestroyOnLoad(go);
         }
 
@@ -31,7 +33,6 @@ namespace Services
         public static IUnityCore UnityCore => _unityCore;
 
         public static ICoroutineService CoroutineService => _unityCore;
-
         #endregion
     }
 }

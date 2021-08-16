@@ -1,18 +1,14 @@
-﻿using UnityEngine;
-using UnityEditor;
-using System.IO;
-using System;
-using GizmoLab.Gameplay;
-using Infrastructure.Database;
-using Object = System.Object;
+﻿using System.IO;
+using GizmoLab.Infrastructure.Database;
+using UnityEngine;
 
-namespace GizmoLab.Infrastructure.Database
+namespace Infrastructure.Database
 {
     public class LocalDataController : IDataManagement
     {
         #region Consts
 
-        private const string LOCAL_DATA_PATH = "Assets/Resources/jsonData.json";
+        private const string LOCAL_DATA_PATH = "Assets/Resources/PlayerData.json";
 
         #endregion
 
@@ -20,32 +16,23 @@ namespace GizmoLab.Infrastructure.Database
 
         #endregion
 
-        #region Functions
+        #region Methods
 
-        public void SaveData(string path = LOCAL_DATA_PATH)
+        public void SaveData()
         {
             var data = PlayerGameData.Instance;
             string jsonObj = JsonUtility.ToJson(data);
-            File.WriteAllText(path, jsonObj);
+            File.WriteAllText(LOCAL_DATA_PATH, jsonObj);
         }
 
-        public void LoadData(string path = LOCAL_DATA_PATH)
+        public void LoadData()
         {
-            var jsonContent = File.ReadAllText(path);
+            var jsonContent = File.ReadAllText(LOCAL_DATA_PATH);
             var data = JsonUtility.FromJson<PlayerGameData>(jsonContent);
+
             PlayerGameData.Instance.Set(data);
         }
 
         #endregion
-    }
-
-    /**
-     * This class assists with serializing/deserializing of JSON game data
-     */
-    public class GameDataFormat
-    {
-        public float _health;
-        public int _score;
-        public string _weapon;
     }
 }

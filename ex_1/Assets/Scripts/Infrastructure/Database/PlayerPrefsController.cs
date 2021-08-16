@@ -30,13 +30,13 @@ namespace Infrastructure.Database
             return JsonUtility.FromJson<PlayerGameData>(playerData);
         }
 
-        public void SaveData(string path = null)
+        public void SaveData()
         {
             string playerData = JsonUtility.ToJson(PlayerGameData.Instance);
             PlayerPrefs.SetString(PLAYER_PREFS_KEY, playerData);
         }
 
-        public void LoadData(string path = null)
+        public void LoadData()
         {
             PlayerGameData.Instance.Set(_LoadPlayerData());
         }

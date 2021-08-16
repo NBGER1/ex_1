@@ -11,7 +11,7 @@ namespace GizmoLab.Infrastructure
 
         private AliensGameCore _gameCore;
         private IDataManagement _database;
-        
+
         #endregion
 
         #region Functions
@@ -19,8 +19,8 @@ namespace GizmoLab.Infrastructure
         private void Awake()
         {
             _database = new LocalDataController();
-            _database.LoadData();
             //_database = new PlayerPrefsController();
+            _database.LoadData();
         }
 
         private void Start()

@@ -1,5 +1,7 @@
 ﻿using GizmoLab.Gameplay.Weapons;
 using GizmoLab.Infrastructure.Database;
+using Infrastructure;
+using Services;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
@@ -8,9 +10,6 @@ namespace GizmoLab.Gameplay
     {
         #region Fields
 
-        private Player _player;
-        private IDamageable _idamageable = new Box();
-
         #endregion
 
 
@@ -18,19 +17,17 @@ namespace GizmoLab.Gameplay
 
         public AliensGameCore()
         {
-            _player = new Player();
-            _player.Weapon = GetPlayerWeapon(PlayerGameData.Instance.Weapon);
+            //GameplayElements.Instance.Player.IsEnabled = false;
         }
 
         #endregion
 
-        #region Functions
+        #region Methods
 
         private Weapon GetPlayerWeapon(string weaponName)
         {
             return new BaseCannon(100, 0.5f, 1);
         }
-
         public void Update()
         {
         }

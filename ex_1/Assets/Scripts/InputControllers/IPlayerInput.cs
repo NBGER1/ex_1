@@ -2,7 +2,15 @@
 {
     public interface IPlayerInput
     {
-    public void Move();
-    public void Fire();
+        #region Fields
+
+        #endregion
+
+        #region Methods
+
+        public void Move();
+        public void Fire();
+
+        #endregion
     }
 }

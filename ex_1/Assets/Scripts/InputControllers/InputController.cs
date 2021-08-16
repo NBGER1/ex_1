@@ -1,27 +1,39 @@
 ﻿using Core;
+using Infrastructure;
 using UnityEngine;
 
 namespace InputControllers
 {
     public class InputController : IPlayerInput, IUpdatable
     {
+        #region Fields
+
+        private bool _isEnabled;
+
+        #endregion
+
         #region Methods
 
         public void Move()
         {
-            throw new System.NotImplementedException();
+            GameplayElements.Instance.Player.Move(Input.GetAxis("Horizontal"));
         }
 
         public void Fire()
         {
-            throw new System.NotImplementedException();
+            GameplayElements.Instance.Player.Fire(null);
         }
 
         public void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                //TODO FIRE
+                Fire();
+            }
+
+            if (Input.GetAxis("Horizontal") != 0)
+            {
+                Move();
             }
         }
 

@@ -16,34 +16,37 @@ namespace GizmoLab.Infrastructure.Database
         [SerializeField] private string _weapon = "";
         [SerializeField] private float _health = 0;
         [SerializeField] private int _score = 0;
+        [SerializeField] private float _speed = 0;
 
         #endregion
 
         #region Properties
 
-        public static PlayerGameData Instance
-        {
-            get { return instance; }
-        }
+        public static PlayerGameData Instance => instance;
 
 
         public float Health
         {
-            get { return _health; }
-            set { _health = value; }
+            get => _health;
+            set => _health = value;
         }
 
         public int Score
         {
-            get { return _score; }
-            set { _score = value; }
+            get => _score;
+            set => _score = value;
         }
 
+        public float Speed
+        {
+            get => _speed;
+            set => _speed = value;
+        }
 
         public string Weapon
         {
-            get { return _weapon; }
-            set { _weapon = value; }
+            get => _weapon;
+            set => _weapon = value;
         }
 
         #endregion
@@ -55,6 +58,7 @@ namespace GizmoLab.Infrastructure.Database
             _health = gameData.Health;
             _score = gameData.Score;
             _weapon = gameData.Weapon;
+            _speed = gameData.Speed;
         }
 
         #endregion
