@@ -1,4 +1,5 @@
-﻿using GizmoLab.Infrastructure.Database;
+﻿using GizmoLab.Gameplay.Weapons;
+using GizmoLab.Infrastructure.Database;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
@@ -27,33 +28,11 @@ namespace GizmoLab.Gameplay
 
         private Weapon GetPlayerWeapon(string weaponName)
         {
-            switch (weaponName)
-            {
-                case "Rifle":
-                    return new Rifle(1, 1, 1);
-                    break;
-                case "Shotgun":
-                    return new Shotgun(1, 1, 1);
-                    break;
-                case "SMG":
-                    return new SMG(1, 1, 1);
-                    break;
-            }
-
-            return new Rifle(1, 1, 1);
+            return new BaseCannon(100, 0.5f, 1);
         }
 
         public void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Space))
-            {
-                _player.Attack(_idamageable);
-            }
-
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                _player.Reload();
-            }
         }
 
         #endregion

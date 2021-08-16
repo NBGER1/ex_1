@@ -7,26 +7,23 @@ public abstract class Weapon
     #region Fields
 
     protected float Cooldown;
-    protected float ReloadTime;
     protected float Damage;
+    protected float Ammo;
 
     #endregion
 
     #region Constructors
 
-    protected Weapon(float cooldown, float reloadtime, float damage)
+    protected Weapon(float ammo, float cooldown, float damage)
     {
         Cooldown = cooldown;
-        ReloadTime = reloadtime;
         Damage = damage;
+        Ammo = ammo;
     }
 
     #endregion
 
     #region Functions
-
-    public abstract void Reload();
-    public abstract void Fire(IDamageable target);
 
     #endregion
 }

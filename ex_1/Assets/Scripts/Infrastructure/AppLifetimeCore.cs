@@ -11,7 +11,7 @@ namespace GizmoLab.Infrastructure
 
         private AliensGameCore _gameCore;
         private IDataManagement _database;
-
+        
         #endregion
 
         #region Functions
