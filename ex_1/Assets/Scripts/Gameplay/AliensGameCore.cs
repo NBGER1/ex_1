@@ -28,6 +28,7 @@ namespace GizmoLab.Gameplay
         {
             return new BaseCannon(100, 0.5f, 1);
         }
+
         public void Update()
         {
         }

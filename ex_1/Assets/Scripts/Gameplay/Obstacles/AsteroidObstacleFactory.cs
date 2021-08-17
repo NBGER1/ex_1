@@ -1,4 +1,5 @@
-﻿using GizmoLab.Gameplay;
+﻿using Gameplay.Obstacles;
+using GizmoLab.Gameplay;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay

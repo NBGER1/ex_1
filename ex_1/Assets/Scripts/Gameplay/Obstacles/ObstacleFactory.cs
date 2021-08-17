@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace GizmoLab.Gameplay
+namespace Gameplay.Obstacles
 {
     public abstract class ObstacleFactory : MonoBehaviour
     {
@@ -16,5 +15,6 @@ namespace GizmoLab.Gameplay
         }
 
         public abstract GameObject Adjust(GameObject obstacle);
+      
     }
 }
