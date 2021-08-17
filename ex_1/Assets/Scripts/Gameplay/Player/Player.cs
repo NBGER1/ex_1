@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Core;
+using Gameplay.Interfaces;
 using Gameplay.Player;
 using GizmoLab.Gameplay;
 using GizmoLab.Infrastructure.Database;
@@ -39,6 +40,12 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     public void TakeDamage(float damage)
     {
         PlayerGameData.Instance.Health -= damage;
+    }
+
+    public float Health
+    {
+        get { return PlayerGameData.Instance.Health; }
+        set { }
     }
 
     #endregion

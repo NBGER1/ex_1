@@ -4,9 +4,7 @@
     {
         #region Properties
 
-        public float _health { get; set; }
-
-        public float _ttl { get; set; }
+        public float TimeToLive { get; set; }
 
         #endregion
     }

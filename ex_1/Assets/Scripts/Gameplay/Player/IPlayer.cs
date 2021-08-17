@@ -1,4 +1,6 @@
-﻿namespace Gameplay.Player
+﻿using Gameplay.Interfaces;
+
+namespace Gameplay.Player
 {
     public interface IPlayer
     {

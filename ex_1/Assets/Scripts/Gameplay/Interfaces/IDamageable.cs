@@ -1,12 +1,17 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public interface IDamageable
+namespace Gameplay.Interfaces
 {
-    #region Functions
+    public interface IDamageable
+    {
+        #region Methods
 
-    void TakeDamage(float damage);
+        void TakeDamage(float damage);
 
-    #endregion
+        #endregion
+
+        #region Properties
+
+        public float Health { get; set; }
+
+        #endregion
+    }
 }

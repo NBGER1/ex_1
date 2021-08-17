@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Gameplay.Interfaces;
+using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
@@ -14,7 +15,7 @@ namespace GizmoLab.Gameplay
 
         #endregion
 
-        #region Functions
+        #region Methods
 
         public void TakeDamage(float damage)
         {
