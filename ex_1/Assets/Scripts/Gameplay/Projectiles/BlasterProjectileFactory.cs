@@ -3,11 +3,18 @@ using UnityEngine;
 
 namespace Gameplay.Projectiles
 {
-    public  class BlastedProjectileFactory : ProjectileFactory
+    public class BlasterProjectileFactory : ProjectileFactory
     {
-        public override GameObject Adjust(GameObject obstacle)
+        #region Methods
+
+        public override GameObject Adjust(GameObject projectile)
         {
-            throw new System.NotImplementedException();
+            projectile.SetActive(true);
+            projectile.GetComponent<Projectile>().TimeToLive = 2f;
+            projectile.GetComponent<Projectile>().FireForce = 500f;
+            return projectile;
         }
+
+        #endregion
     }
 }

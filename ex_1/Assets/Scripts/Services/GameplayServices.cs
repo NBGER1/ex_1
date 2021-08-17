@@ -1,4 +1,5 @@
 ﻿using Core;
+using Gameplay.Projectiles;
 using InputControllers;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Services
         #region Fields
 
         private static UnityCore _unityCore;
-        
+
         #endregion
 
         #region Methods
@@ -22,7 +23,7 @@ namespace Services
             InputController inputManager = new InputController();
             //# Register Upatables
             _unityCore.RegisterUpdateable(inputManager);
-            
+
             Object.DontDestroyOnLoad(go);
         }
 
@@ -33,6 +34,7 @@ namespace Services
         public static IUnityCore UnityCore => _unityCore;
 
         public static ICoroutineService CoroutineService => _unityCore;
+
         #endregion
     }
 }

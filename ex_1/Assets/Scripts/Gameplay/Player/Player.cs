@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Core;
+using System;
 using Gameplay.Interfaces;
 using Gameplay.Player;
-using GizmoLab.Gameplay;
+using Gameplay.Projectiles;
 using GizmoLab.Infrastructure.Database;
-using Infrastructure.Database;
+using Infrastructure;
 using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IPlayer
@@ -13,7 +11,6 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     #region Fields
 
     private bool _isEnabled;
-
 
     public bool IsEnabled
     {
@@ -23,12 +20,20 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
 
     #endregion
 
-    #region Functions
+    #region Methods
+
+    private void Start()
+    {
+    }
 
     public void Fire(IDamageable target)
     {
         if (!_isEnabled) return;
         Debug.Log("Player Class fire!");
+        GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();
+        Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 5f;
+        projectile.GetComponent<Projectile>().Fire(_projectileSpawnPosition);
+        Debug.Log("projectile = " + projectile);
     }
 
     public void Move(float force)

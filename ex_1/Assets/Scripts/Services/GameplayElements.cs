@@ -1,5 +1,6 @@
 ﻿using Gameplay.Player;
 using InputControllers;
+using Services;
 using UnityEngine;
 
 namespace Infrastructure
@@ -9,6 +10,7 @@ namespace Infrastructure
         #region Editor
 
         [SerializeField] private Player _player;
+        [SerializeField] private GameplayFactories _factories;
 
         #endregion
 
@@ -24,6 +26,7 @@ namespace Infrastructure
         #region Properties
 
         public IPlayer Player => _player;
+        public IGameplayFactories Factories => _factories;
 
         #endregion
     }

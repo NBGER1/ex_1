@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Boot
 {
-    public class EntryPoint:MonoBehaviour
+    public sealed class EntryPoint : MonoBehaviour
     {
         private void Awake()
         {

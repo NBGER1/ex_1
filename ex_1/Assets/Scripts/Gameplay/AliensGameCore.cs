@@ -17,6 +17,7 @@ namespace GizmoLab.Gameplay
 
         public AliensGameCore()
         {
+            
             GameplayElements.Instance.Player.IsEnabled = true;
         }
 
