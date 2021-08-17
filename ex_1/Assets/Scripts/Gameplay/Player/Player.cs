@@ -36,11 +36,9 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     public void Fire(IDamageable target)
     {
         if (!_isEnabled) return;
-        Debug.Log("Player Class fire!");
         GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();
         Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 5f;
         projectile.GetComponent<Projectile>().Fire(_projectileSpawnPosition);
-        Debug.Log("projectile = " + projectile);
     }
 
     public void Move(float force)
@@ -56,6 +54,13 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     public void TakeDamage(float damage)
     {
         PlayerGameData.Instance.Health -= damage;
+        if (PlayerGameData.Instance.Health == 0) OnZeroHealth();
+    }
+
+    public void OnZeroHealth()
+    {
+        Debug.Log("Player is at 0 health");
+        _isEnabled = false;
     }
 
     public float Health

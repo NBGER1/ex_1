@@ -13,6 +13,7 @@ namespace GizmoLab.Gameplay
             Debug.Log("Obstacle is = " + obstacle);
             obstacle.GetComponent<Renderer>().material.SetColor("_Color", Color.gray);
             obstacle.GetComponent<Obstacle>().Health = 500;
+            obstacle.transform.position = Vector3.up;
             return obstacle;
         }
 

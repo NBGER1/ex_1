@@ -20,6 +20,12 @@ namespace GizmoLab.Gameplay
         public void TakeDamage(float damage)
         {
             _health = Mathf.Max(0, _health - damage);
+            if (_health == 0) OnZeroHealth();
+        }
+
+        public void OnZeroHealth()
+        {
+            Destroy(gameObject);
         }
 
         #endregion

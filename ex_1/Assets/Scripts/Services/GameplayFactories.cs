@@ -8,9 +8,9 @@ namespace Services
     {
         #region Fields
 
-        private AsteroidObstacleFactory _asteroidObstacleFactory;
-        private DebrisObstacleFactory _debrisObstacleFactory;
-        private BlasterProjectileFactory _blasterProjectileFactory;
+        private static AsteroidObstacleFactory _asteroidObstacleFactory;
+        private static DebrisObstacleFactory _debrisObstacleFactory;
+        private static BlasterProjectileFactory _blasterProjectileFactory;
 
         #endregion
 
@@ -29,9 +29,23 @@ namespace Services
 
         public GameObject GetBlasterProjectile()
         {
-            Debug.Log("GetBlasterProjectile @GameplayFactories");
             var projectile = _blasterProjectileFactory.Create();
             return projectile;
+        }
+
+        public static GameObject GenerateRandomObstacle()
+        {
+            Object obstacle;
+            if (Random.Range(0, 1) > 1)
+            {
+                obstacle = _asteroidObstacleFactory.Create();
+            }
+            else
+            {
+                obstacle = _debrisObstacleFactory.Create();
+            }
+
+            return obstacle as GameObject;
         }
 
         #endregion

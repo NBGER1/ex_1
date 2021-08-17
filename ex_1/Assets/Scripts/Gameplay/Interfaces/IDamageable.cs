@@ -5,6 +5,7 @@ namespace Gameplay.Interfaces
         #region Methods
 
         void TakeDamage(float damage);
+        void OnZeroHealth();
 
         #endregion
 

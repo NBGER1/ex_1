@@ -12,7 +12,8 @@ namespace Gameplay.Projectiles
             projectile.SetActive(true);
             projectile.GetComponent<Projectile>().Initialize(
                 2f,
-                500f
+                500f,
+                1000f
             );
             return projectile;
         }

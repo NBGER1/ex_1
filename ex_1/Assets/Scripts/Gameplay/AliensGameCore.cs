@@ -19,17 +19,14 @@ namespace GizmoLab.Gameplay
         {
             
             GameplayElements.Instance.Player.IsEnabled = true;
+            GameObject obstacle = GameplayFactories.GenerateRandomObstacle();
         }
 
         #endregion
 
         #region Methods
 
-        private Weapon GetPlayerWeapon(string weaponName)
-        {
-            return new BaseCannon(100, 0.5f, 1);
-        }
-
+        
         public void Update()
         {
         }
