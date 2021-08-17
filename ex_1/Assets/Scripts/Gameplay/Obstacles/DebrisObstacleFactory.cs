@@ -10,9 +10,12 @@ namespace GizmoLab.Gameplay
 
         public override GameObject Adjust(GameObject obstacle)
         {
-            obstacle.GetComponent<Renderer>().material.SetColor("_Color", Color.yellow);
-            obstacle.GetComponent<Obstacle>().Health = 50;
-            obstacle.transform.position = Vector3.up*5f;
+            obstacle.GetComponent<Obstacle>().Initialize(
+                Color.yellow,
+                50,
+                1,
+                Vector3.up * 15f
+            );
             return obstacle;
         }
 

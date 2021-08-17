@@ -1,13 +1,16 @@
-﻿using Gameplay.Interfaces;
+﻿using Core;
+using Gameplay.Interfaces;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
-    public class Obstacle : MonoBehaviour, IDamageable
+    public class Obstacle : MonoBehaviour, IDamageable, IUpdatable
     {
         #region Fields
 
         private float _health;
+        private float _speed;
+        private static readonly int Color1 = Shader.PropertyToID("_Color");
 
         #endregion
 
@@ -16,6 +19,14 @@ namespace GizmoLab.Gameplay
         #endregion
 
         #region Methods
+
+        public void Initialize(Color color, float health, float speed, Vector3 origin)
+        {
+            gameObject.GetComponent<Renderer>().material.SetColor(Color1, color);
+            _health = health;
+            _speed = speed;
+            transform.position = origin;
+        }
 
         public void TakeDamage(float damage)
         {
@@ -39,5 +50,10 @@ namespace GizmoLab.Gameplay
         }
 
         #endregion
+
+        public void Update()
+        {
+            transform.Translate(Vector3.down * Time.deltaTime * _speed);
+        }
     }
 }
