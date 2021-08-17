@@ -14,6 +14,7 @@ namespace GizmoLab.Gameplay
                 Color.yellow,
                 100,
                 1,
+                50,
                 Vector3.up * 15f
             );
             return obstacle;

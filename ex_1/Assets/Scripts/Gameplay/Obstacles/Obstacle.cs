@@ -1,4 +1,5 @@
-﻿using Core;
+﻿using System;
+using Core;
 using Gameplay.Interfaces;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ namespace GizmoLab.Gameplay
 
         private float _health;
         private float _speed;
+        private float _damage;
         private static readonly int Color1 = Shader.PropertyToID("_Color");
 
         #endregion
@@ -20,11 +22,12 @@ namespace GizmoLab.Gameplay
 
         #region Methods
 
-        public void Initialize(Color color, float health, float speed, Vector3 origin)
+        public void Initialize(Color color, float health, float speed, float damage, Vector3 origin)
         {
             gameObject.GetComponent<Renderer>().material.SetColor(Color1, color);
             _health = health;
             _speed = speed;
+            _damage = damage;
             transform.position = origin;
         }
 
@@ -37,6 +40,12 @@ namespace GizmoLab.Gameplay
         public void OnZeroHealth()
         {
             Destroy(gameObject);
+        }
+
+        private void OnCollisionEnter(Collision other)
+        {
+            other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_damage);
+            OnZeroHealth();
         }
 
         #endregion

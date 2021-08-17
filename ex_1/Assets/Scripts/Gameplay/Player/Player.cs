@@ -37,7 +37,7 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     {
         if (!_isEnabled) return;
         GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();
-        Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 5f;
+        Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 3f;
         projectile.GetComponent<Projectile>().Fire(_projectileSpawnPosition);
     }
 
@@ -53,7 +53,8 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
 
     public void TakeDamage(float damage)
     {
-        PlayerGameData.Instance.Health -= damage;
+        Mathf.Max(PlayerGameData.Instance.Health - damage, 0);
+        Debug.Log("[Player][" + PlayerGameData.Instance.Health + "]" + " - Was hit for " + damage);
         if (PlayerGameData.Instance.Health == 0) OnZeroHealth();
     }
 
