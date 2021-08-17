@@ -8,6 +8,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDamageable, IPlayer
 {
+    #region Const
+
+    private float _PLAYER_CONSTRAINT;
+
+    #endregion
+
     #region Fields
 
     private bool _isEnabled;
@@ -24,6 +30,7 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
 
     private void Start()
     {
+        _PLAYER_CONSTRAINT = Camera.main.orthographicSize / 2f;
     }
 
     public void Fire(IDamageable target)
@@ -39,7 +46,11 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
     public void Move(float force)
     {
         if (!_isEnabled) return;
-        transform.position += Vector3.right * force * Time.deltaTime * PlayerGameData.Instance.Speed;
+        float speed = force * Time.deltaTime * PlayerGameData.Instance.Speed;
+        transform.Translate(speed, -2.2f, 0);
+        Vector3 lastKnownPosition = transform.position;
+        transform.position = new Vector3(Mathf.Clamp(lastKnownPosition.x, -1 * _PLAYER_CONSTRAINT, _PLAYER_CONSTRAINT),
+            -2.2f, 0);
     }
 
     public void TakeDamage(float damage)

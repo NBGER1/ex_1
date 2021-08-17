@@ -17,6 +17,12 @@ namespace Gameplay.Projectiles
 
         #region Methods
 
+        public void Initialize(float timeToLive, float fireForce)
+        {
+            _timeToLive = timeToLive;
+            _fireForce = fireForce;
+        }
+
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();

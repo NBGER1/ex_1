@@ -10,8 +10,10 @@ namespace Gameplay.Projectiles
         public override GameObject Adjust(GameObject projectile)
         {
             projectile.SetActive(true);
-            projectile.GetComponent<Projectile>().TimeToLive = 2f;
-            projectile.GetComponent<Projectile>().FireForce = 500f;
+            projectile.GetComponent<Projectile>().Initialize(
+                2f,
+                500f
+            );
             return projectile;
         }
 

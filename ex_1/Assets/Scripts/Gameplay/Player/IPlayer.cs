@@ -8,7 +8,6 @@ namespace Gameplay.Player
 
         void Fire(IDamageable target);
         void Move(float force);
-
         #endregion
 
         #region Properties

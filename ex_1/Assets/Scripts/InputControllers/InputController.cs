@@ -13,7 +13,6 @@ namespace InputControllers
         #endregion
 
         #region Methods
-
         public void Move()
         {
             GameplayElements.Instance.Player.Move(Input.GetAxis("Horizontal"));
