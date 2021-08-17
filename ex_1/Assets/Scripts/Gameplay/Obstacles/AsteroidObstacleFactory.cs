@@ -10,13 +10,14 @@ namespace GizmoLab.Gameplay
 
         public override GameObject Adjust(GameObject obstacle)
         {
-            obstacle.GetComponent<Obstacle>().Initialize(
-                Color.yellow,
-                100,
-                1,
-                50,
-                Vector3.up * 15f
-            );
+            ObstacleDataStructure obstacleData = default;
+            obstacleData.Health = 25;
+            obstacleData.Speed = 1;
+            obstacleData.Color = Color.gray;
+            obstacleData.Damage = 50;
+            obstacleData.Origin = Vector3.up * 15f;
+            obstacleData.Direction = Vector3.down;
+            obstacle.GetComponent<Obstacle>().Initialize(obstacleData);
             return obstacle;
         }
 

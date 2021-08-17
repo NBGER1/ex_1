@@ -6,14 +6,8 @@ using GizmoLab.Infrastructure.Database;
 using Infrastructure;
 using UnityEngine;
 
-public class Player : MonoBehaviour, IDamageable, IPlayer
+public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
 {
-    #region Const
-
-    private float _PLAYER_CONSTRAINT;
-
-    #endregion
-
     #region Fields
 
     private bool _isEnabled;
@@ -28,9 +22,11 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
 
     #region Methods
 
-    private void Start()
+    public void ValidateConstraints(Vector3 position)
     {
-        _PLAYER_CONSTRAINT = Camera.main.orthographicSize / 2f;
+        float constraint = Camera.main.orthographicSize / 2f;
+        transform.position = new Vector3(Mathf.Clamp(position.x, -1 * constraint, constraint),
+            -2.2f, 0);
     }
 
     public void Fire(IDamageable target)
@@ -46,9 +42,7 @@ public class Player : MonoBehaviour, IDamageable, IPlayer
         if (!_isEnabled) return;
         float speed = force * Time.deltaTime * PlayerGameData.Instance.Speed;
         transform.Translate(speed, -2.2f, 0);
-        Vector3 lastKnownPosition = transform.position;
-        transform.position = new Vector3(Mathf.Clamp(lastKnownPosition.x, -1 * _PLAYER_CONSTRAINT, _PLAYER_CONSTRAINT),
-            -2.2f, 0);
+        ValidateConstraints(transform.position);
     }
 
     public void TakeDamage(float damage)

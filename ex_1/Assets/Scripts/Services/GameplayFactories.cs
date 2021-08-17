@@ -11,6 +11,7 @@ namespace Services
         private static AsteroidObstacleFactory _asteroidObstacleFactory;
         private static DebrisObstacleFactory _debrisObstacleFactory;
         private static BlasterProjectileFactory _blasterProjectileFactory;
+        private static EnemyShipObstacleFactory _enemyShipObstacleFactory;
 
         #endregion
 
@@ -19,8 +20,11 @@ namespace Services
 
         private void Awake()
         {
+            //# Obstacles
             _asteroidObstacleFactory = gameObject.AddComponent<AsteroidObstacleFactory>();
             _debrisObstacleFactory = gameObject.AddComponent<DebrisObstacleFactory>();
+            _enemyShipObstacleFactory = gameObject.AddComponent<EnemyShipObstacleFactory>();
+            //# Projectiles
             _blasterProjectileFactory = gameObject.AddComponent<BlasterProjectileFactory>();
 
             //# Initialize Factories with pooling
@@ -36,13 +40,18 @@ namespace Services
         public static GameObject GenerateRandomObstacle()
         {
             Object obstacle;
-            if (Random.Range(0, 1) > 1)
+            var rnd = Random.Range(1, 1);
+            if (rnd == 0)
             {
                 obstacle = _asteroidObstacleFactory.Create();
             }
-            else
+            else if (rnd == 1)
             {
                 obstacle = _debrisObstacleFactory.Create();
+            }
+            else
+            {
+                obstacle = _enemyShipObstacleFactory.Create();
             }
 
             return obstacle as GameObject;

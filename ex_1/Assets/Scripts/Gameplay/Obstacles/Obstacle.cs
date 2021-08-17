@@ -1,34 +1,62 @@
 ﻿using System;
+using System.Linq;
 using Core;
 using Gameplay.Interfaces;
+using Gameplay.Obstacles;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
-    public class Obstacle : MonoBehaviour, IDamageable, IUpdatable
+    public class Obstacle : MonoBehaviour, IDamageable, IUpdatable, IConstrainedToView
     {
+        #region Consts
+
+        private float _OBSTACLE_CONSTRAINT;
+
+        #endregion
+
         #region Fields
 
         private float _health;
         private float _speed;
         private float _damage;
+        private Vector3 _direction;
         private static readonly int Color1 = Shader.PropertyToID("_Color");
-
-        #endregion
-
-        #region Constructors
+        private float _constraint;
 
         #endregion
 
         #region Methods
 
-        public void Initialize(Color color, float health, float speed, float damage, Vector3 origin)
+        public void LateUpdate()
         {
-            gameObject.GetComponent<Renderer>().material.SetColor(Color1, color);
-            _health = health;
-            _speed = speed;
-            _damage = damage;
-            transform.position = origin;
+            if (_health <= 0) return;
+            ValidateConstraints(transform.position);
+        }
+
+        public void Update()
+        {
+            if (_health <= 0) return;
+            transform.Translate(_direction * Time.deltaTime * _speed);
+        }
+
+        public void ValidateConstraints(Vector3 position)
+        {
+            if (position.x < _constraint * -1 || position.x > _constraint) OnZeroHealth();
+            else if (position.y < _constraint * -1 || position.y > _constraint * 3f) OnZeroHealth();
+        }
+
+        public void Initialize(ObstacleDataStructure obstacleData)
+        {
+            gameObject.GetComponent<Renderer>().material.SetColor(Color1, obstacleData.Color);
+            _health = obstacleData.Health;
+            _speed = obstacleData.Speed;
+            _damage = obstacleData.Damage;
+            transform.position = obstacleData.Origin;
+            _direction = obstacleData.Direction;
+
+            //# Self initialization
+            _constraint = Camera.main.orthographicSize / 1.5f;
         }
 
         public void TakeDamage(float damage)
@@ -59,10 +87,5 @@ namespace GizmoLab.Gameplay
         }
 
         #endregion
-
-        public void Update()
-        {
-            transform.Translate(Vector3.down * Time.deltaTime * _speed);
-        }
     }
 }

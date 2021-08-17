@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
-    public class DebrisObstacleFactory : ObstacleFactory
+    public class EnemyShipObstacleFactory : ObstacleFactory
     {
         #region Functions
 
@@ -15,8 +15,8 @@ namespace GizmoLab.Gameplay
             obstacleData.Speed = 1;
             obstacleData.Color = Color.yellow;
             obstacleData.Damage = 50;
-            obstacleData.Origin = Vector3.up * 15f;
-            obstacleData.Direction = Vector3.down;
+            obstacleData.Origin = Vector3.up * 12f;
+            obstacleData.Direction = Vector3.right;
             obstacle.GetComponent<Obstacle>().Initialize(obstacleData);
             return obstacle;
         }

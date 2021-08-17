@@ -17,16 +17,15 @@ namespace GizmoLab.Gameplay
 
         public AliensGameCore()
         {
-            
             GameplayElements.Instance.Player.IsEnabled = true;
-            GameObject obstacle = GameplayFactories.GenerateRandomObstacle();
+            GameplayFactories.GenerateRandomObstacle();
+      
         }
 
         #endregion
 
         #region Methods
 
-        
         public void Update()
         {
         }
