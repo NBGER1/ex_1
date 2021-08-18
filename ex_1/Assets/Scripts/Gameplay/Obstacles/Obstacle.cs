@@ -41,6 +41,7 @@ namespace GizmoLab.Gameplay
             transform.Translate(_direction * Time.deltaTime * _speed);
         }
 
+
         public void ValidateConstraints(Vector3 position)
         {
             if (position.x < _constraint * -1 || position.x > _constraint) OnZeroHealth();

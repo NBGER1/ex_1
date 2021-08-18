@@ -6,12 +6,14 @@ using GizmoLab.Infrastructure.Database;
 using Infrastructure;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
 {
     #region Fields
 
     private bool _isEnabled;
     private Vector3 _spawnPosition;
+    private Animator _animator;
 
     public bool IsEnabled
     {
@@ -32,6 +34,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     private void Awake()
     {
         _spawnPosition = new Vector3(0, -2.2f, 0);
+        _animator = GetComponent<Animator>();
         Initialize();
     }
 
@@ -46,7 +49,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     {
         if (!_isEnabled) return;
         GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();
-        Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 3f;
+        Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 1.5f;
         projectile.GetComponent<Projectile>().Fire(_projectileSpawnPosition);
     }
 
