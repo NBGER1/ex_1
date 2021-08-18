@@ -1,5 +1,4 @@
-﻿using Gameplay.Interfaces;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Gameplay.Obstacles
 {

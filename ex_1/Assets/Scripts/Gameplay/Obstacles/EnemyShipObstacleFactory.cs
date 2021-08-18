@@ -1,12 +1,11 @@
 ﻿using Gameplay.Obstacles;
-using GizmoLab.Gameplay;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
     public class EnemyShipObstacleFactory : ObstacleFactory
     {
-        #region Functions
+        #region Methods
 
         public override GameObject Adjust(GameObject obstacle)
         {

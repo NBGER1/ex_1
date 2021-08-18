@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using Core;
-using GizmoLab.Gameplay.Weapons;
-using GizmoLab.Infrastructure.Database;
 using Infrastructure;
 using Services;
 using UnityEngine;
@@ -51,7 +46,6 @@ namespace GizmoLab.Gameplay
 
         private void OnObstacleDestroy(object sender, EventArgs arg)
         {
-            Debug.Log("Sender = " + sender.ToString() + " Has been destroyed");
             --_obstaclesOnScreen;
         }
 

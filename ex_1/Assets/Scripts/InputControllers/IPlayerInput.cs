@@ -2,9 +2,6 @@
 {
     public interface IPlayerInput
     {
-        #region Fields
-
-        #endregion
 
         #region Methods
 

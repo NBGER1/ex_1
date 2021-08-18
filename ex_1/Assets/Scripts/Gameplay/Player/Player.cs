@@ -1,10 +1,10 @@
-using System;
 using Gameplay.Interfaces;
 using Gameplay.Player;
 using Gameplay.Projectiles;
 using GizmoLab.Infrastructure.Database;
 using Infrastructure;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
@@ -72,6 +72,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     {
         Debug.Log("Player is at 0 health");
         _isEnabled = false;
+        SceneManager.LoadScene("SpaceShooter");
     }
 
     public float Health

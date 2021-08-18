@@ -1,20 +1,18 @@
-﻿using Gameplay.Interfaces;
-using Gameplay.Obstacles;
-using GizmoLab.Gameplay;
+﻿using Gameplay.Obstacles;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
     public class AsteroidObstacleFactory : ObstacleFactory
     {
-        #region Functions
+        #region Methods
 
         public override GameObject Adjust(GameObject obstacle)
         {
             MAXHorizontalOrigin = Camera.main.orthographicSize / 2.5f;
             MinHorizontalOrigin = MAXHorizontalOrigin * -1;
             MinVerticalOrigin = Camera.main.orthographicSize;
-            MaxVerticalOrigin = MinVerticalOrigin*0.9f;
+            MaxVerticalOrigin = MinVerticalOrigin * 0.9f;
 
             ObstacleDataStructure obstacleData = default;
             obstacleData.Health = 25;

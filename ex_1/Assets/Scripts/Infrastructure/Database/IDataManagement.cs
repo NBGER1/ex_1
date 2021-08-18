@@ -1,11 +1,9 @@
-﻿using System.Runtime.InteropServices;
-using JetBrains.Annotations;
-
+﻿
 namespace Infrastructure.Database
 {
     public interface IDataManagement
     {
-        #region Functions
+        #region Methods
 
         public void SaveData();
 

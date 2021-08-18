@@ -1,6 +1,6 @@
 {
   "_weapon": "BaseCannon",
-  "_health": 1.0,
+  "_health": 100.0,
   "_score": 0,
   "_speed": 10
 }

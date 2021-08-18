@@ -15,6 +15,9 @@ namespace GizmoLab.Gameplay.Effects
 
         #endregion
 
+
+        #region Methods
+
         private void Awake()
         {
             if (_randomRotationSpeed) _rotationSpeed = UnityEngine.Random.Range(5, 10);
@@ -23,8 +26,6 @@ namespace GizmoLab.Gameplay.Effects
             var rndZ = UnityEngine.Random.Range(0f, 360f);
             _gameObject.transform.rotation = Quaternion.Euler(rndX, rndY, rndZ);
         }
-
-        #region Methods
 
         public void Update()
         {

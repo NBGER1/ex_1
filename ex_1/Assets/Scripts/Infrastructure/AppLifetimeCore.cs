@@ -1,5 +1,4 @@
 ﻿using GizmoLab.Gameplay;
-using GizmoLab.Infrastructure.Database;
 using Infrastructure.Database;
 using UnityEngine;
 
