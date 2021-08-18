@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core
 {
-    public class UnityCore : MonoBehaviour, IUnityCore, ICoroutineService
+    public class UnityCore : MonoBehaviour, IUnityCore
     {
         #region Fields
 
@@ -27,11 +27,6 @@ namespace Core
         public void RegisterUpdateable(IUpdatable updatable)
         {
             _updatables.Add(updatable);
-        }
-
-        public void RunCoroutine(IEnumerator coroutineBody)
-        {
-            StartCoroutine((coroutineBody));
         }
 
         #endregion

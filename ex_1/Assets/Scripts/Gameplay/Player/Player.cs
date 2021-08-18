@@ -11,6 +11,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     #region Fields
 
     private bool _isEnabled;
+    private Vector3 _spawnPosition;
 
     public bool IsEnabled
     {
@@ -22,9 +23,21 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
 
     #region Methods
 
+    private void Initialize()
+    {
+        //# Initializes itself by default
+        transform.position = _spawnPosition;
+    }
+
+    private void Awake()
+    {
+        _spawnPosition = new Vector3(0, -2.2f, 0);
+        Initialize();
+    }
+
     public void ValidateConstraints(Vector3 position)
     {
-        float constraint = Camera.main.orthographicSize / 2f;
+        float constraint = Camera.main.orthographicSize / 2.5f;
         transform.position = new Vector3(Mathf.Clamp(position.x, -1 * constraint, constraint),
             -2.2f, 0);
     }

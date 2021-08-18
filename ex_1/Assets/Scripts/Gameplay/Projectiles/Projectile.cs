@@ -38,11 +38,13 @@ namespace Gameplay.Projectiles
             if (!isInstant)
                 yield return new WaitForSeconds(_timeToLive);
             Debug.Log(gameObject.name + " has died after " + _timeToLive + " seconds");
+            _rb.velocity = Vector3.zero;
             gameObject.SetActive(false);
         }
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Projectile")) return;
             other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_damage);
             StartCoroutine(HideProjectile(true));
         }

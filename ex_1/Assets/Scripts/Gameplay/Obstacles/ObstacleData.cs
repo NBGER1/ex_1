@@ -10,5 +10,6 @@ namespace Gameplay.Obstacles
         public Color Color { get; set; }
         public Vector3 Origin { get; set; }
         public Vector3 Direction { get; set; }
+        public float Constraint { get; set; }
     }
 }

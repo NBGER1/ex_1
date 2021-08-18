@@ -1,9 +1,15 @@
 ﻿using System.Collections;
+using UnityEngine;
 
 namespace Core
 {
     public interface ICoroutineService
     {
-        void RunCoroutine(IEnumerator coroutineBody);
+        #region Methods
+
+        Coroutine RunCoroutine(IEnumerator coroutineBody);
+        Awaiter WaitFor(float duration);
+
+        #endregion
     }
 }

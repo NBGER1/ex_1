@@ -10,10 +10,27 @@ namespace Services
         #region Fields
 
         private static UnityCore _unityCore;
+        private static CoroutineService _coroutineService;
+
+        #endregion
+
+        #region Constructor
+
+        static GameplayServices()
+        {
+            _coroutineService = CreateCoroutineCore();
+        }
 
         #endregion
 
         #region Methods
+
+        private static CoroutineService CreateCoroutineCore()
+        {
+            var go = new GameObject("CoroutineService_Holder");
+            Object.DontDestroyOnLoad(go);
+            return go.AddComponent<CoroutineService>();
+        }
 
         public static void Initialize()
         {
@@ -33,7 +50,7 @@ namespace Services
 
         public static IUnityCore UnityCore => _unityCore;
 
-        public static ICoroutineService CoroutineService => _unityCore;
+        public static ICoroutineService CoroutineService => _coroutineService;
 
         #endregion
     }

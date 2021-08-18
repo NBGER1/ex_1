@@ -40,7 +40,7 @@ namespace Services
         public static GameObject GenerateRandomObstacle()
         {
             Object obstacle;
-            var rnd = Random.Range(1, 1);
+            var rnd = Random.Range(2, 2);
             if (rnd == 0)
             {
                 obstacle = _asteroidObstacleFactory.Create();

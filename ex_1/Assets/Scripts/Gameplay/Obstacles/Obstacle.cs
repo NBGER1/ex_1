@@ -3,15 +3,16 @@ using System.Linq;
 using Core;
 using Gameplay.Interfaces;
 using Gameplay.Obstacles;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
 {
     public class Obstacle : MonoBehaviour, IDamageable, IUpdatable, IConstrainedToView
     {
-        #region Consts
+        #region Events
 
-        private float _OBSTACLE_CONSTRAINT;
+        public event EventHandler ObjectDestroyed;
 
         #endregion
 
@@ -54,14 +55,15 @@ namespace GizmoLab.Gameplay
             _damage = obstacleData.Damage;
             transform.position = obstacleData.Origin;
             _direction = obstacleData.Direction;
+            _constraint = obstacleData.Constraint;
 
-            //# Self initialization
-            _constraint = Camera.main.orthographicSize / 1.5f;
+            Debug.Log(gameObject.name + " Was spawned at position = " + obstacleData.Origin);
         }
 
         public void TakeDamage(float damage)
         {
             _health = Mathf.Max(0, _health - damage);
+            Debug.Log("Obstacle took damage " + damage);
             if (_health == 0) OnZeroHealth();
         }
 
@@ -72,8 +74,14 @@ namespace GizmoLab.Gameplay
 
         private void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Obstacle")) return;
             other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_damage);
             OnZeroHealth();
+        }
+
+        public void OnDestroy()
+        {
+            ObjectDestroyed?.Invoke(this, EventArgs.Empty);
         }
 
         #endregion
