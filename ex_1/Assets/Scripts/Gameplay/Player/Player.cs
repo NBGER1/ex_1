@@ -63,16 +63,15 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
 
     public void TakeDamage(float damage)
     {
-        Mathf.Max(PlayerGameData.Instance.Health - damage, 0);
-        Debug.Log("[Player][" + PlayerGameData.Instance.Health + "]" + " - Was hit for " + damage);
+        PlayerGameData.Instance.Health = Mathf.Max(PlayerGameData.Instance.Health - damage, 0);
+        Debug.Log("Player took " + damage + " damage, health is now " + PlayerGameData.Instance.Health);
         if (PlayerGameData.Instance.Health == 0) OnZeroHealth();
     }
 
     public void OnZeroHealth()
     {
-        Debug.Log("Player is at 0 health");
-        _isEnabled = false;
-        SceneManager.LoadScene("SpaceShooter");
+        Debug.Log("You died, but no respawn mechanism yet. Here's 100 hp");
+        PlayerGameData.Instance.Health = 100;
     }
 
     public float Health

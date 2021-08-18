@@ -10,7 +10,7 @@ namespace GizmoLab.Gameplay
         #region Fields
 
         private int _obstaclesOnScreen = 0;
-        private int _maxObstaclesOnScreen = 3;
+        private int _maxObstaclesOnScreen = 6;
         private float _obstacleSpawnCooldown = 2f;
 
         #endregion

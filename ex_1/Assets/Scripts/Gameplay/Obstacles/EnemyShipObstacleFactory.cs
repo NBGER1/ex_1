@@ -16,7 +16,7 @@ namespace GizmoLab.Gameplay
 
             ObstacleDataStructure obstacleData = default;
             obstacleData.Health = 25;
-            obstacleData.Speed = 1;
+            obstacleData.Speed = UnityEngine.Random.Range(0.5f, 3f);
             obstacleData.Color = Color.yellow;
             obstacleData.Damage = 50;
             obstacleData.Origin = Vector3.right * Random.Range(MinHorizontalOrigin, MAXHorizontalOrigin) +

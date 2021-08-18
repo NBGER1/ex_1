@@ -56,8 +56,6 @@ namespace GizmoLab.Gameplay
             transform.position = obstacleData.Origin;
             _direction = obstacleData.Direction;
             _constraint = obstacleData.Constraint;
-
-            Debug.Log(gameObject.name + " Was spawned at position = " + obstacleData.Origin);
         }
 
         public void TakeDamage(float damage)
