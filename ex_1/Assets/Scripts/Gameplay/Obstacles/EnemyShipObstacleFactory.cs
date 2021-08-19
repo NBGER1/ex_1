@@ -7,7 +7,7 @@ namespace GizmoLab.Gameplay
     {
         #region Methods
 
-        public override GameObject Adjust(GameObject obstacle)
+        protected override GameObject Adjust(GameObject obstacle)
         {
             MAXHorizontalOrigin = Camera.main.orthographicSize / 2.5f;
             MinHorizontalOrigin = MAXHorizontalOrigin * -1;

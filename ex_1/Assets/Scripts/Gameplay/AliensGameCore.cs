@@ -2,6 +2,7 @@
 using Infrastructure;
 using Services;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 namespace GizmoLab.Gameplay
 {

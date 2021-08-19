@@ -4,9 +4,14 @@ namespace Gameplay.Obstacles
 {
     public abstract class ObstacleFactory : MonoBehaviour
     {
-        #region Fields
+        #region Editor
 
         [SerializeField] private Object _prefab;
+
+        #endregion
+
+        #region Fields
+
         protected float MAXHorizontalOrigin;
         protected float MinHorizontalOrigin;
         protected float MinVerticalOrigin;
@@ -23,7 +28,7 @@ namespace Gameplay.Obstacles
             return Adjust(obstacle);
         }
 
-        public abstract GameObject Adjust(GameObject obstacle);
+        protected abstract GameObject Adjust(GameObject obstacle);
 
         #endregion
     }
