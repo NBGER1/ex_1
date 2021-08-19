@@ -20,7 +20,7 @@ namespace InputControllers
 
         public void Fire()
         {
-            GameplayElements.Instance.Player.Fire(null);
+            GameplayElements.Instance.Player.Fire();
         }
 
         public void Update()

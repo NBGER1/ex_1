@@ -37,7 +37,7 @@ namespace GizmoLab.Gameplay
                     .WaitFor(_obstacleSpawnCooldown)
                     .OnEnd(() =>
                     {
-                        var obstacle = GameplayFactories.GenerateRandomObstacle();
+                        var obstacle = GameplayElements.Instance.Factories.GenerateRandomObstacle();
                         var obsGo = obstacle.GetComponent<Obstacle>();
                         obsGo.ObjectDestroyed += OnObstacleDestroy;
                     });

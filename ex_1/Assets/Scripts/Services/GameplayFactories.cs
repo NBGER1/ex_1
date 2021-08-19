@@ -37,7 +37,7 @@ namespace Services
             return projectile;
         }
 
-        public static GameObject GenerateRandomObstacle()
+        public GameObject GenerateRandomObstacle()
         {
             Object obstacle;
             var rnd = Random.Range(0, 3);

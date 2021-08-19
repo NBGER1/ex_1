@@ -45,7 +45,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
             -2.2f, 0);
     }
 
-    public void Fire(IDamageable target)
+    public void Fire()
     {
         if (!_isEnabled) return;
         GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();

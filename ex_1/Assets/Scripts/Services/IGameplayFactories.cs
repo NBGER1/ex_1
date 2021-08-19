@@ -7,6 +7,7 @@ namespace Services
         #region Methods
 
         public GameObject GetBlasterProjectile();
+        public GameObject GenerateRandomObstacle();
 
         #endregion
     }

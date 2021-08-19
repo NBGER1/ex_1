@@ -6,7 +6,7 @@ namespace Gameplay.Player
     {
         #region Methods
 
-        void Fire(IDamageable target);
+        void Fire( );
         void Move(float force);
         #endregion
 

@@ -11,10 +11,6 @@ namespace Infrastructure.Database
 
         #endregion
 
-        #region Fields
-
-        #endregion
-
         #region Functions
 
         private static PlayerGameData _LoadPlayerData()
