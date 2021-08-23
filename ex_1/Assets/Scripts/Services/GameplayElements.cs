@@ -1,4 +1,6 @@
-﻿using Gameplay.Player;
+﻿using Gameplay.Obstacles;
+using Gameplay.Player;
+using Gameplay.Projectiles;
 using InputControllers;
 using Services;
 using UnityEngine;
@@ -10,11 +12,11 @@ namespace Infrastructure
         #region Editor
 
         [SerializeField] private Player _player;
-        [SerializeField] private GameplayFactories _factories;
+        [SerializeField] private GameplayFactories _gameplayFactories;
 
         #endregion
 
-        #region Functions
+        #region Methods
 
         protected override GameplayElements GetInstance()
         {
@@ -26,7 +28,7 @@ namespace Infrastructure
         #region Properties
 
         public IPlayer Player => _player;
-        public IGameplayFactories Factories => _factories;
+        public IGameplayFactories GameplayFactories => _gameplayFactories;
 
         #endregion
     }

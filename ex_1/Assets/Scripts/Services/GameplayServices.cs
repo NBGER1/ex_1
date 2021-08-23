@@ -12,7 +12,6 @@ namespace Services
 
         private static UnityCore _unityCore;
         private static CoroutineService _coroutineService;
-
         #endregion
 
         #region Constructor

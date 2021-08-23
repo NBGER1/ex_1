@@ -13,6 +13,7 @@ namespace InputControllers
         #endregion
 
         #region Methods
+
         public void Move()
         {
             GameplayElements.Instance.Player.Move(Input.GetAxis("Horizontal"));
@@ -25,6 +26,7 @@ namespace InputControllers
 
         public void Update()
         {
+            if (!_isEnabled) return;
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Fire();

@@ -34,14 +34,15 @@ namespace Gameplay.Projectiles
             }
         }
 
-        public GameObject Create()
+        public Projectile Create(Vector3 spawnPosition)
         {
-            GameObject projectile = _pool.Find(objectInPool => !objectInPool.activeInHierarchy);
-            Debug.Log("Creating projectile = " + projectile.name);
+            var go = _pool.Find(objectInPool => !objectInPool.activeInHierarchy);
+            Projectile projectile = go.GetComponent<Projectile>();
+            projectile.transform.position = spawnPosition;
             return Adjust(projectile);
         }
 
-        public abstract GameObject Adjust(GameObject obstacle);
+        public abstract Projectile Adjust(Projectile projectile);
 
         #endregion
     }

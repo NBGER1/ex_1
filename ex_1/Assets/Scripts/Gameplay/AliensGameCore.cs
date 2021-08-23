@@ -3,6 +3,8 @@ using Infrastructure;
 using Services;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
+using Object = UnityEngine.Object;
+using Random = UnityEngine.Random;
 
 namespace GizmoLab.Gameplay
 {
@@ -38,9 +40,8 @@ namespace GizmoLab.Gameplay
                     .WaitFor(_obstacleSpawnCooldown)
                     .OnEnd(() =>
                     {
-                        var obstacle = GameplayElements.Instance.Factories.GenerateRandomObstacle();
-                        var obsGo = obstacle.GetComponent<Obstacle>();
-                        obsGo.ObjectDestroyed += OnObstacleDestroy;
+                        var obstacle = GameplayElements.Instance.GameplayFactories.GenerateRandomObstacle();
+                        obstacle.ObjectDestroyed += OnObstacleDestroy;
                     });
             }
         }

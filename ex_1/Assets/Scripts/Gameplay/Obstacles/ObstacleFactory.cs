@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using GizmoLab.Gameplay;
+using UnityEngine;
 
 namespace Gameplay.Obstacles
 {
@@ -7,6 +8,7 @@ namespace Gameplay.Obstacles
         #region Editor
 
         [SerializeField] private Object _prefab;
+        [SerializeField] protected Camera _camera;
 
         #endregion
 
@@ -21,14 +23,14 @@ namespace Gameplay.Obstacles
 
         #region Methods
 
-        public virtual Object Create()
+        public virtual Obstacle Create()
         {
             Debug.Log("Instantiating a new obstacle.." + _prefab);
-            GameObject obstacle = Instantiate(_prefab) as GameObject;
-            return Adjust(obstacle);
+            var obstacle = Instantiate(_prefab) as GameObject;
+            return Adjust(obstacle.GetComponent<Obstacle>());
         }
-
-        protected abstract GameObject Adjust(GameObject obstacle);
+    
+        public abstract Obstacle Adjust(Obstacle obstacle);
 
         #endregion
     }

@@ -7,11 +7,11 @@ namespace GizmoLab.Gameplay
     {
         #region Methods
 
-        protected override GameObject Adjust(GameObject obstacle)
+        public override Obstacle Adjust(Obstacle obstacle)
         {
-            MAXHorizontalOrigin = Camera.main.orthographicSize / 2.5f;
+            MAXHorizontalOrigin = _camera.orthographicSize / 2.5f;
             MinHorizontalOrigin = MAXHorizontalOrigin * -1;
-            MinVerticalOrigin = Camera.main.orthographicSize;
+            MinVerticalOrigin = _camera.orthographicSize;
             MaxVerticalOrigin = MinVerticalOrigin * 0.9f;
 
             ObstacleDataStructure obstacleData = default;
@@ -22,10 +22,12 @@ namespace GizmoLab.Gameplay
             obstacleData.Origin = Vector3.right * Random.Range(MinHorizontalOrigin, MAXHorizontalOrigin) +
                                   Vector3.up * Random.Range(MinVerticalOrigin, MaxVerticalOrigin);
             obstacleData.Direction = Vector3.down;
-            obstacleData.Constraint = Camera.main.orthographicSize / 2f;
+            obstacleData.Constraint = _camera.orthographicSize / 2f;
 
-            obstacle.GetComponent<Obstacle>().Initialize(obstacleData);
-            return obstacle;
+            var asteroid = obstacle.GetComponent<Asteroid>();
+            asteroid.Initialize(obstacleData);
+            // obstacle.Initialize(obstacleData);
+            return asteroid;
         }
 
         #endregion

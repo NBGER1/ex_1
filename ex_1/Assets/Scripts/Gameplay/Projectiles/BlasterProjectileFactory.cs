@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Gameplay.Projectiles
 {
@@ -6,10 +7,14 @@ namespace Gameplay.Projectiles
     {
         #region Methods
 
-        public override GameObject Adjust(GameObject projectile)
+        private void Awake()
         {
-            projectile.SetActive(true);
-            projectile.GetComponent<Projectile>().Initialize(
+            InitializePool();
+        }
+
+        public override Projectile Adjust(Projectile projectile)
+        {
+            projectile.Initialize(
                 2f,
                 500f,
                 1000f

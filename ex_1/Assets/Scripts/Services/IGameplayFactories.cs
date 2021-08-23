@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Gameplay.Projectiles;
+using GizmoLab.Gameplay;
+using UnityEngine;
 
 namespace Services
 {
@@ -6,8 +8,8 @@ namespace Services
     {
         #region Methods
 
-        public GameObject GetBlasterProjectile();
-        public GameObject GenerateRandomObstacle();
+        public Obstacle GenerateRandomObstacle();
+        public Projectile GetProjectile(Vector3 origin);
 
         #endregion
     }

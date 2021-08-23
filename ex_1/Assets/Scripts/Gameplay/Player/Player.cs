@@ -9,11 +9,18 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Animator))]
 public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
 {
+    #region Editor
+
+    [SerializeField] private Camera _camera;
+
+    #endregion
+
     #region Fields
 
     private bool _isEnabled;
     private Vector3 _spawnPosition;
     private Animator _animator;
+    private Transform _transform;
 
     public bool IsEnabled
     {
@@ -29,33 +36,32 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     {
         //# Initializes itself by default
         transform.position = _spawnPosition;
+        _spawnPosition = new Vector3(0, -2.2f, 0);
     }
 
     private void Awake()
     {
-        _spawnPosition = new Vector3(0, -2.2f, 0);
         _animator = GetComponent<Animator>();
+        _transform = GetComponent<Transform>();
         Initialize();
     }
 
     public void ValidateConstraints(Vector3 position)
     {
-        float constraint = Camera.main.orthographicSize / 2.5f;
+        float constraint = _camera.orthographicSize / 2.5f;
         transform.position = new Vector3(Mathf.Clamp(position.x, -1 * constraint, constraint),
             -2.2f, 0);
     }
 
     public void Fire()
     {
-        if (!_isEnabled) return;
-        GameObject projectile = GameplayElements.Instance.Factories.GetBlasterProjectile();
         Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 1.5f;
-        projectile.GetComponent<Projectile>().Fire(_projectileSpawnPosition);
+        var projectile = GameplayElements.Instance.GameplayFactories.GetProjectile(_projectileSpawnPosition);
+        projectile.Fire(Vector3.up);
     }
 
     public void Move(float force)
     {
-        if (!_isEnabled) return;
         float speed = force * Time.deltaTime * PlayerGameData.Instance.Speed;
         transform.Translate(speed, -2.2f, 0);
         ValidateConstraints(transform.position);
