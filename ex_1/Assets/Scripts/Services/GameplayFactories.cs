@@ -10,10 +10,19 @@ namespace Services
     {
         #region Editor
 
+        #region Obstacle Factories
+
         [SerializeField] private AsteroidObstacleFactory _asteroidObstacleFactory;
         [SerializeField] private DebrisObstacleFactory _debrisObstacleFactory;
         [SerializeField] private EnemyShipObstacleFactory _enemyShipObstacleFactory;
+
+        #endregion
+
+        #region Projectile Factories
+
         [SerializeField] private BlasterProjectileFactory _blasterProjectileFactory;
+
+        #endregion
 
         #endregion
 
@@ -36,7 +45,6 @@ namespace Services
                 obstacle = _enemyShipObstacleFactory.Create();
             }
 
-            Debug.Log(obstacle);
             return obstacle;
         }
 

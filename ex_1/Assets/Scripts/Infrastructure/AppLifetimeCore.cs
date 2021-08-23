@@ -1,5 +1,6 @@
 ﻿using GizmoLab.Gameplay;
 using Infrastructure.Database;
+using InputControllers;
 using UnityEngine;
 
 namespace GizmoLab.Infrastructure
@@ -10,6 +11,7 @@ namespace GizmoLab.Infrastructure
 
         private AliensGameCore _gameCore;
         private IDataManagement _database;
+        private InputController _inputController;
 
         #endregion
 
@@ -17,6 +19,7 @@ namespace GizmoLab.Infrastructure
 
         private void Awake()
         {
+            _inputController = new InputController();
             _database = new LocalDataController();
             //_database = new PlayerPrefsController();
             _database.LoadData();
@@ -24,7 +27,7 @@ namespace GizmoLab.Infrastructure
 
         private void Start()
         {
-            _gameCore = new AliensGameCore();
+            _gameCore = new AliensGameCore(_inputController);
         }
 
         private void Update()

@@ -1,5 +1,4 @@
-﻿using GizmoLab.Infrastructure.Database;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Infrastructure.Database
 {

@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-namespace GizmoLab.Infrastructure.Database
+namespace Infrastructure.Database
 {
     [System.Serializable]
     public class PlayerGameData
@@ -8,6 +9,12 @@ namespace GizmoLab.Infrastructure.Database
         #region Consts
 
         private static readonly PlayerGameData instance = new PlayerGameData();
+
+        #endregion
+
+        #region Events
+
+        public event EventHandler OnPlayerDeath;
 
         #endregion
 
@@ -28,7 +35,11 @@ namespace GizmoLab.Infrastructure.Database
         public float Health
         {
             get => _health;
-            set => _health = value;
+            set
+            {
+                _health = value;
+                OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+            }
         }
 
         public int Score
@@ -50,6 +61,7 @@ namespace GizmoLab.Infrastructure.Database
         }
 
         #endregion
+
 
         #region Functions
 

@@ -1,5 +1,6 @@
 ﻿using Core;
 using Infrastructure;
+using Services;
 using UnityEngine;
 
 namespace InputControllers
@@ -9,6 +10,7 @@ namespace InputControllers
         #region Fields
 
         private bool _isEnabled;
+        private bool _canFire;
 
         #endregion
 
@@ -21,7 +23,13 @@ namespace InputControllers
 
         public void Fire()
         {
+            if (_canFire)
+                _canFire = false;
             GameplayElements.Instance.Player.Fire();
+            GameplayServices
+                .CoroutineService
+                .WaitFor(1.5f)
+                .OnEnd(() => { _canFire = true; });
         }
 
         public void Update()
@@ -37,6 +45,18 @@ namespace InputControllers
                 Move();
             }
         }
+
+        #endregion
+
+        #region Properties
+
+        public bool IsEnabled
+        {
+            get { return _isEnabled; }
+            set { _isEnabled = value; }
+        }
+
+        public bool CanFire { get; set; }
 
         #endregion
     }

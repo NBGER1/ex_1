@@ -14,13 +14,13 @@ namespace Gameplay.Projectiles
 
         #region Fields
 
-        private float _maxActiveDistance;
-        private float _fireForce;
-        private float _damage;
+        protected float _maxActiveDistance;
+        protected float _fireForce;
+        protected float _damage;
         private Rigidbody _rb;
         private Transform _transform;
         private Vector3 _startingPosition;
-
+        
         #endregion
 
         #region Methods
@@ -31,10 +31,9 @@ namespace Gameplay.Projectiles
             _rb = gameObject.GetComponent<Rigidbody>();
         }
 
-        public virtual void Fire(Vector3 origin)
+        public virtual void Fire()
         {
-            _transform.position = origin;
-            _startingPosition = origin;
+            _startingPosition = _transform.position;
             _rb.AddForce(Vector3.up * _fireForce);
         }
 
@@ -51,7 +50,8 @@ namespace Gameplay.Projectiles
 
         public void LateUpdate()
         {
-            if (Vector3.Distance(_startingPosition, _transform.position) >= _maxActiveDistance) Destroy(gameObject);
+            if (Vector3.Distance(_startingPosition, _transform.position) >= _maxActiveDistance)
+                HideProjectile();
         }
 
         #endregion

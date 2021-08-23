@@ -10,10 +10,5 @@ namespace Gameplay.Player
         void Move(float force);
         #endregion
 
-        #region Properties
-
-        public bool IsEnabled { get; set; }
-
-        #endregion
     }
 }
