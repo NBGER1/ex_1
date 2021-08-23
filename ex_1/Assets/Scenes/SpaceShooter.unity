@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 320f303903c543b594002a42b42fe245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8984386072147598389, guid: 0964516253e84b14a96d16af8f5e21a4, type: 3}
   _camera: {fileID: 2068158850}
+  _prfefab: {fileID: 8984386072147598389, guid: 4e4e7c899e9d5bd4bb6714d9d04a001a, type: 3}
 --- !u!4 &54728178
 Transform:
   m_ObjectHideFlags: 0
@@ -407,8 +407,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fc0d7791b57416c9e3ca83d8bd31de8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8984386072147598389, guid: 1dd4d2bc640af6a4484df6ea0efc6115, type: 3}
   _camera: {fileID: 2068158850}
+  _prfefab: {fileID: 8984386072147598389, guid: 1dd4d2bc640af6a4484df6ea0efc6115, type: 3}
 --- !u!4 &947486355
 Transform:
   m_ObjectHideFlags: 0
@@ -647,8 +647,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f76ab0605e954b08b34f9a4ae5e47acd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _prefab: {fileID: 8984386072147598389, guid: 0964516253e84b14a96d16af8f5e21a4, type: 3}
   _camera: {fileID: 2068158850}
+  _prfefab: {fileID: 8984386072147598389, guid: 44da9b90f56372a4ab001d7ea3c8531b, type: 3}
 --- !u!4 &1668445095
 Transform:
   m_ObjectHideFlags: 0

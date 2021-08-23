@@ -1,4 +1,5 @@
-﻿using Gameplay.Projectiles;
+﻿using Gameplay.Obstacles.Abstractions;
+using Gameplay.Projectiles;
 using GizmoLab.Gameplay;
 using UnityEngine;
 

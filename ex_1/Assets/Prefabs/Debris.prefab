@@ -111,8 +111,9 @@ GameObject:
   - component: {fileID: 2449702078099031278}
   - component: {fileID: 7401562149398241844}
   - component: {fileID: 7799660672207077002}
+  - component: {fileID: -6308541863340332398}
   m_Layer: 0
-  m_Name: ObstaclePrefab
+  m_Name: Debris
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -211,3 +212,15 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &-6308541863340332398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8984386072147598389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 209976e1cabc463caa126219bcfe83a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

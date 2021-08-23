@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Linq;
 using Core;
 using Gameplay.Interfaces;
-using Gameplay.Obstacles;
 using UnityEngine;
 
-namespace GizmoLab.Gameplay
+namespace Gameplay.Obstacles.Abstractions
 {
     public abstract class Obstacle : MonoBehaviour, IDamageable, IUpdatable, IConstrainedToView
     {
@@ -30,51 +28,76 @@ namespace GizmoLab.Gameplay
 
         #region Methods
 
-        private void Awake()
+        #region Virtuals
+
+        public virtual void OnCollisionEnter(Collision other)
         {
+            if (other.gameObject.CompareTag("Obstacle")) return;
+            other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_damage);
+            OnZeroHealth();
         }
 
-        public void LateUpdate()
+        public virtual void TakeDamage(float damage)
         {
+            _health = Mathf.Max(0, _health - damage);
+            if (_health == 0) OnZeroHealth();
         }
 
-        public void Update()
+        public virtual void OnZeroHealth()
         {
+            Destroy(gameObject);
         }
 
-        private void OnLeavingScreen()
+        public virtual void OnDestroy()
         {
+            ObjectDestroyed?.Invoke(this, EventArgs.Empty);
         }
 
-        public void ValidateConstraints(Vector3 position)
+        public virtual void OnLeavingScreen()
         {
+            Destroy(gameObject);
         }
 
-        public void Initialize(ObstacleDataStructure obstacleData)
+        public virtual void Update()
         {
+            _transform.Translate(_direction * Time.deltaTime * _speed);
         }
 
-        public void TakeDamage(float damage)
+        public virtual void LateUpdate()
         {
+            ValidateConstraints(transform.position);
         }
 
-        public void OnZeroHealth()
+        public virtual void Awake()
         {
+            _renderer = GetComponent<Renderer>();
+            _transform = GetComponent<Transform>();
         }
 
-        private void OnCollisionEnter(Collision other)
+        #endregion
+
+        #region Abstracts
+
+        #endregion
+
+
+        public virtual void ValidateConstraints(Vector3 position)
         {
+            if (position.x < _constraint * -1 || position.x > _constraint) OnLeavingScreen();
+            else if (position.y < _constraint * -1 || position.y > _constraint * 3f) OnLeavingScreen();
         }
 
-        public void OnDestroy()
-        {
-        }
+        public abstract void Initialize(ObstacleDataStructure obstacleData);
 
         #endregion
 
         #region Properties
 
-        public float Health { get; set; }
+        public virtual float Health
+        {
+            get { return _health; }
+            set { _health = Mathf.Max(value, 0); }
+        }
 
         #endregion
     }

@@ -1,4 +1,5 @@
 ﻿using Gameplay.Obstacles;
+using Gameplay.Obstacles.Abstractions;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
@@ -7,7 +8,7 @@ namespace GizmoLab.Gameplay
     {
         #region Methods
 
-        public override Obstacle Adjust(Obstacle obstacle)
+        public override Obstacle Adjust(GameObject obstacle)
         {
             MAXHorizontalOrigin = _camera.orthographicSize / 2.5f;
             MinHorizontalOrigin = MAXHorizontalOrigin * -1;
@@ -23,8 +24,10 @@ namespace GizmoLab.Gameplay
                                   Vector3.up * Random.Range(MinVerticalOrigin, MaxVerticalOrigin);
             obstacleData.Direction = Vector3.right;
             obstacleData.Constraint = MAXHorizontalOrigin * 1.5f;
-            obstacle.Initialize(obstacleData);
-            return obstacle;
+
+            var ship = obstacle.GetComponent<Ship>();
+            ship.Initialize(obstacleData);
+            return ship;
         }
 
         #endregion

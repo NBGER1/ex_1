@@ -1,4 +1,5 @@
 ﻿using Gameplay.Obstacles;
+using Gameplay.Obstacles.Abstractions;
 using UnityEngine;
 
 namespace GizmoLab.Gameplay
@@ -7,7 +8,7 @@ namespace GizmoLab.Gameplay
     {
         #region Methods
 
-        public override Obstacle Adjust(Obstacle obstacle)
+        public override Obstacle Adjust(GameObject obstacle)
         {
             MAXHorizontalOrigin = _camera.orthographicSize / 2.5f;
             MinHorizontalOrigin = MAXHorizontalOrigin * -1;
@@ -26,7 +27,6 @@ namespace GizmoLab.Gameplay
 
             var asteroid = obstacle.GetComponent<Asteroid>();
             asteroid.Initialize(obstacleData);
-            // obstacle.Initialize(obstacleData);
             return asteroid;
         }
 

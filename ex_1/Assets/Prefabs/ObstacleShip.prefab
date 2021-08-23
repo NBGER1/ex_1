@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3767565005271073889}
   - component: {fileID: 2449702078099031278}
   - component: {fileID: 7401562149398241844}
-  - component: {fileID: 5332758706850795483}
   - component: {fileID: 7799660672207077002}
+  - component: {fileID: 1858230307439588007}
   m_Layer: 0
   m_Name: ObstacleShip
   m_TagString: Obstacle
@@ -98,18 +98,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5332758706850795483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8984386072147598389}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a33a47a029b94fba8cbe9644ff594296, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!54 &7799660672207077002
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -126,6 +114,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1858230307439588007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8984386072147598389}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc7a69e062d4484badec9f640c0ea3d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4250316887049956836
 PrefabInstance:
   m_ObjectHideFlags: 0

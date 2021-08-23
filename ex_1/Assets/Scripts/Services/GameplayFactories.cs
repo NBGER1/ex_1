@@ -1,4 +1,5 @@
 ﻿using Gameplay.Obstacles;
+using Gameplay.Obstacles.Abstractions;
 using Gameplay.Projectiles;
 using GizmoLab.Gameplay;
 using UnityEngine;
@@ -21,7 +22,7 @@ namespace Services
         public Obstacle GenerateRandomObstacle()
         {
             Obstacle obstacle;
-            var rnd = Random.Range(0, 0);
+            var rnd = Random.Range(0, 3);
             if (rnd == 0)
             {
                 obstacle = _asteroidObstacleFactory.Create();
