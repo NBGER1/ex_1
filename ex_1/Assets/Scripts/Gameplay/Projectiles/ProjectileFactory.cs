@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Gameplay.Projectiles.Structs;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -6,15 +8,16 @@ namespace Gameplay.Projectiles
 {
     public abstract class ProjectileFactory : MonoBehaviour
     {
-        #region Consts
+        #region Editor
 
-        private const int POOL_SIZE = 30;
+        [SerializeField] [Range(0, 30)] protected int POOL_SIZE = 30;
+        [SerializeField] private Object _prefab;
+        [SerializeField] protected ProjectileData _projectileData;
 
         #endregion
 
         #region Fields
 
-        [SerializeField] private Object _prefab;
         private List<GameObject> _pool = new List<GameObject>();
         private GameObject _poolParent;
 
@@ -22,12 +25,18 @@ namespace Gameplay.Projectiles
 
         #region Methods
 
-        public void InitializePool()
+        public virtual void Awake()
         {
-            _poolParent = new GameObject("ProjectilePool");
+            InitializePool();
+        }
+
+        public virtual void InitializePool()
+        {
+            _poolParent = new GameObject("ProjectilesPoolContainer");
             for (int i = 0; i < POOL_SIZE; i++)
             {
                 var newProjectile = Instantiate(_prefab, _poolParent.transform, true) as GameObject;
+                if (!newProjectile) continue;
                 newProjectile.name = "Projectile#" + (i + 1);
                 newProjectile.SetActive(false);
                 _pool.Add(newProjectile);
@@ -36,13 +45,12 @@ namespace Gameplay.Projectiles
 
         public Projectile Create(Vector3 spawnPosition)
         {
-            var go = _pool.Find(objectInPool => !objectInPool.activeInHierarchy);
-            Projectile projectile = go.GetComponent<Projectile>();
+            var projectile = _pool.Find(objectInPool => !objectInPool.activeInHierarchy);
             projectile.transform.position = spawnPosition;
             return Adjust(projectile);
         }
 
-        public abstract Projectile Adjust(Projectile projectile);
+        protected abstract Projectile Adjust(GameObject projectile);
 
         #endregion
     }

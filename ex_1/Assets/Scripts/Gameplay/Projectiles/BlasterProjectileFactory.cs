@@ -1,4 +1,5 @@
 ﻿using System;
+using Gameplay.Projectiles.Structs;
 using UnityEngine;
 
 namespace Gameplay.Projectiles
@@ -7,19 +8,11 @@ namespace Gameplay.Projectiles
     {
         #region Methods
 
-        private void Awake()
+        protected override Projectile Adjust(GameObject projectile)
         {
-            InitializePool();
-        }
-
-        public override Projectile Adjust(Projectile projectile)
-        {
-            projectile.Initialize(
-                2f,
-                500f,
-                1000f
-            );
-            return projectile;
+            var blaster = projectile.GetComponent<BlasterProjectile>();
+            blaster.Initialize(_projectileData);
+            return blaster;
         }
 
         #endregion

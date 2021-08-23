@@ -12,6 +12,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     #region Editor
 
     [SerializeField] private Camera _camera;
+    [SerializeField] private Transform _projectileLauncher;
 
     #endregion
 
@@ -54,7 +55,7 @@ public class Player : MonoBehaviour, IConstrainedToView, IDamageable, IPlayer
     }
 
     public void Fire()
-    {
+    { 
         Vector3 _projectileSpawnPosition = transform.position + Vector3.up * 1.5f;
         var projectile = GameplayElements.Instance.GameplayFactories.GetProjectile(_projectileSpawnPosition);
         projectile.Fire(Vector3.up);
