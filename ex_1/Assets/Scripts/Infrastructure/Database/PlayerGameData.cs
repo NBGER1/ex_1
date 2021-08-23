@@ -37,8 +37,9 @@ namespace Infrastructure.Database
             get => _health;
             set
             {
-                _health = value;
-                OnPlayerDeath?.Invoke(this, EventArgs.Empty);
+                _health = Mathf.Max(_health - value, 0);
+                if (_health <= 0)
+                    OnPlayerDeath?.Invoke(this, EventArgs.Empty);
             }
         }
 
