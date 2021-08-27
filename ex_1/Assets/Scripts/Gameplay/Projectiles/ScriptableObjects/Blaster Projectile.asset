@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Blaster Projectile
   m_EditorClassIdentifier: 
   _damage: 260
-  _launchForce: 653
+  _launchForce: 550
   _maxActiveDistance: 45.2

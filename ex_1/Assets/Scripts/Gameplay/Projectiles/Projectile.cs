@@ -20,7 +20,7 @@ namespace Gameplay.Projectiles
         private Rigidbody _rb;
         private Transform _transform;
         private Vector3 _startingPosition;
-        
+
         #endregion
 
         #region Methods
@@ -29,6 +29,7 @@ namespace Gameplay.Projectiles
         {
             _transform = transform;
             _rb = gameObject.GetComponent<Rigidbody>();
+            _rb.velocity = Vector3.zero;
         }
 
         public virtual void Fire()
@@ -46,6 +47,7 @@ namespace Gameplay.Projectiles
         {
             if (other.gameObject.CompareTag("Projectile")) return;
             other.gameObject.GetComponent<IDamageable>()?.TakeDamage(_damage);
+            HideProjectile();
         }
 
         public void LateUpdate()

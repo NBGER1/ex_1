@@ -46,8 +46,13 @@ namespace Gameplay.Projectiles
         public Projectile Create(Vector3 spawnPosition)
         {
             var projectile = _pool.Find(objectInPool => !objectInPool.activeInHierarchy);
-            projectile.transform.position = spawnPosition;
-            return Adjust(projectile);
+            if (projectile)
+            {
+                projectile.transform.position = spawnPosition;
+                return Adjust(projectile);
+            }
+
+            return null;
         }
 
         protected abstract Projectile Adjust(GameObject projectile);

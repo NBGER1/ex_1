@@ -9,8 +9,11 @@ namespace InputControllers
     {
         #region Fields
 
-        private bool _isEnabled;
         private bool _canFire;
+
+        #endregion
+
+        #region Constructors
 
         #endregion
 
@@ -23,18 +26,14 @@ namespace InputControllers
 
         public void Fire()
         {
-            if (_canFire)
-                _canFire = false;
             GameplayElements.Instance.Player.Fire();
-            GameplayServices
-                .CoroutineService
-                .WaitFor(1.5f)
-                .OnEnd(() => { _canFire = true; });
         }
 
         public void Update()
         {
-            if (!_isEnabled) return;
+            Debug.Log("Update of InputController");
+            Debug.Log("Enabled.. do something!");
+
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 Fire();
@@ -42,21 +41,10 @@ namespace InputControllers
 
             if (Input.GetAxis("Horizontal") != 0)
             {
+                Debug.Log("Moving");
                 Move();
             }
         }
-
-        #endregion
-
-        #region Properties
-
-        public bool IsEnabled
-        {
-            get { return _isEnabled; }
-            set { _isEnabled = value; }
-        }
-
-        public bool CanFire { get; set; }
 
         #endregion
     }

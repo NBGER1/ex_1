@@ -36,11 +36,11 @@ namespace Services
         public static void Initialize()
         {
             var go = new GameObject("UnityCore");
+            var inputManager = new InputController();
             //# Prepare Updatables
             _unityCore = go.AddComponent<UnityCore>();
-            var inputManager = new InputController();
-            //# Register Upatables
             _unityCore.RegisterUpdateable(inputManager);
+            //# Register Upatables
             Object.DontDestroyOnLoad(go);
         }
 

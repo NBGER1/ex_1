@@ -3,6 +3,7 @@ using Infrastructure;
 using Infrastructure.Database;
 using InputControllers;
 using Services;
+using UnityEditorInternal.VersionControl;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 using Object = UnityEngine.Object;
@@ -12,24 +13,22 @@ namespace GizmoLab.Gameplay
 {
     public class AliensGameCore
     {
+        #region Events
+
+        #endregion
+
         #region Fields
 
         private int _obstaclesOnScreen = 0;
         private int _maxObstaclesOnScreen = 3;
-        private float _obstacleSpawnCooldown = 2f;
-        private IPlayerInput _inputController;
 
         #endregion
 
 
         #region Constructors
 
-        public AliensGameCore(InputController inputController)
+        public AliensGameCore()
         {
-            _inputController = inputController;
-            inputController.IsEnabled = true;
-            inputController.CanFire = true;
-            PlayerGameData.Instance.OnPlayerDeath += OnPlayerZeroHealth;
         }
 
         #endregion
@@ -43,7 +42,7 @@ namespace GizmoLab.Gameplay
                 _obstaclesOnScreen++;
                 GameplayServices
                     .CoroutineService
-                    .WaitFor(_obstacleSpawnCooldown)
+                    .WaitFor(Random.Range(2, 5))
                     .OnEnd(() =>
                     {
                         var obstacle = GameplayElements.Instance.GameplayFactories.GenerateRandomObstacle();
@@ -55,11 +54,6 @@ namespace GizmoLab.Gameplay
         private void OnObstacleDestroy(object sender, EventArgs arg)
         {
             --_obstaclesOnScreen;
-        }
-
-        private void OnPlayerZeroHealth(object sneder, EventArgs arg)
-        {
-            Debug.Log("[Game] - Player was defeated");
         }
 
         #endregion

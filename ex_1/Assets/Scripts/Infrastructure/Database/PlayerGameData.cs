@@ -1,20 +1,17 @@
 ﻿using System;
+using GizmoLab.Gameplay;
 using UnityEngine;
 
 namespace Infrastructure.Database
 {
+    public delegate void PlayerEventHandler(string eventName);
+
     [System.Serializable]
     public class PlayerGameData
     {
         #region Consts
 
         private static readonly PlayerGameData instance = new PlayerGameData();
-
-        #endregion
-
-        #region Events
-
-        public event EventHandler OnPlayerDeath;
 
         #endregion
 
@@ -27,20 +24,15 @@ namespace Infrastructure.Database
 
         #endregion
 
+
         #region Properties
 
         public static PlayerGameData Instance => instance;
 
-
         public float Health
         {
             get => _health;
-            set
-            {
-                _health = Mathf.Max(_health - value, 0);
-                if (_health <= 0)
-                    OnPlayerDeath?.Invoke(this, EventArgs.Empty);
-            }
+            set => _health = value;
         }
 
         public int Score

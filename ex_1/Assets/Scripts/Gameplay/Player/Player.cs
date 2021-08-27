@@ -53,7 +53,8 @@ public class Player : MonoBehaviour, IDamageable, IConstrainedToView, IPlayer
     public void Fire()
     {
         var projectile = GameplayElements.Instance.GameplayFactories.GetProjectile(_projectileLauncher.position);
-        projectile.Fire();
+        if (projectile)
+            projectile.Fire();
     }
 
     public void Move(float force)

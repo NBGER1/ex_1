@@ -7,11 +7,14 @@ namespace GizmoLab.Infrastructure
 {
     public class AppLifetimeCore : MonoBehaviour
     {
+        #region Editor
+
+        #endregion
+
         #region Fields
 
         private AliensGameCore _gameCore;
         private IDataManagement _database;
-        private InputController _inputController;
 
         #endregion
 
@@ -19,7 +22,6 @@ namespace GizmoLab.Infrastructure
 
         private void Awake()
         {
-            _inputController = new InputController();
             _database = new LocalDataController();
             //_database = new PlayerPrefsController();
             _database.LoadData();
@@ -27,7 +29,7 @@ namespace GizmoLab.Infrastructure
 
         private void Start()
         {
-            _gameCore = new AliensGameCore(_inputController);
+            _gameCore = new AliensGameCore();
         }
 
         private void Update()
