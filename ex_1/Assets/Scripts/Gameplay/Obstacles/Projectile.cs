@@ -58,6 +58,10 @@ namespace Gameplay.Projectiles
 
         #endregion
 
+        #region Properties
+
         public float Health { get; set; }
+
+        #endregion
     }
 }

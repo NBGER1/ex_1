@@ -21,6 +21,7 @@ namespace GizmoLab.Gameplay
 
         private int _obstaclesOnScreen = 0;
         private int _maxObstaclesOnScreen = 3;
+        private IPlayerInput _playerInput;
 
         #endregion
 
@@ -29,6 +30,9 @@ namespace GizmoLab.Gameplay
 
         public AliensGameCore()
         {
+            _playerInput = new InputController();
+            GameplayServices.UnityCore.RegisterUpdateable(_playerInput);
+            _playerInput.EnableInput();
         }
 
         #endregion

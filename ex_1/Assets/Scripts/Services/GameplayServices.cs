@@ -1,4 +1,5 @@
 ﻿using Core;
+using Gameplay.Player;
 using Gameplay.Projectiles;
 using GizmoLab.Gameplay;
 using InputControllers;
@@ -36,10 +37,8 @@ namespace Services
         public static void Initialize()
         {
             var go = new GameObject("UnityCore");
-            var inputManager = new InputController();
             //# Prepare Updatables
             _unityCore = go.AddComponent<UnityCore>();
-            _unityCore.RegisterUpdateable(inputManager);
             //# Register Upatables
             Object.DontDestroyOnLoad(go);
         }

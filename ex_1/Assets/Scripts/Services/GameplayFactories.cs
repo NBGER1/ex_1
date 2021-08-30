@@ -12,9 +12,9 @@ namespace Services
 
         #region Obstacle Factories
 
-        [SerializeField] private AsteroidObstacleFactory _asteroidObstacleFactory;
-        [SerializeField] private DebrisObstacleFactory _debrisObstacleFactory;
-        [SerializeField] private EnemyShipObstacleFactory _enemyShipObstacleFactory;
+        [SerializeField] private ObstacleFactory _asteroidObstacleFactory;
+        [SerializeField] private ObstacleFactory _debrisObstacleFactory;
+        [SerializeField] private ObstacleFactory _enemyShipObstacleFactory;
 
         #endregion
 
@@ -53,15 +53,6 @@ namespace Services
             var projectile = _blasterProjectileFactory.Create(origin);
             return projectile;
         }
-
-        #endregion
-
-        #region Properties
-
-        public ObstacleFactory AsteroidObstacleFactory => _asteroidObstacleFactory;
-        public ObstacleFactory DebrisObstacleFactory => _debrisObstacleFactory;
-        public ObstacleFactory ShipObstacleFactory => _enemyShipObstacleFactory;
-        public ProjectileFactory BlasterProjectileFactory => _blasterProjectileFactory;
 
         #endregion
     }

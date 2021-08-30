@@ -1,11 +1,15 @@
-﻿namespace InputControllers
+﻿using Core;
+
+namespace InputControllers
 {
-    public interface IPlayerInput
+    public interface IPlayerInput : IUpdatable
     {
         #region Methods
 
-        public void Move();
-        public void Fire();
+        void Move();
+        void Fire();
+        void EnableInput();
+        void DisableInput();
 
         #endregion
     }

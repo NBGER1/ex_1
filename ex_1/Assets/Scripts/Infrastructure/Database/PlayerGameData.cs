@@ -1,6 +1,4 @@
-﻿using System;
-using GizmoLab.Gameplay;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Infrastructure.Database
 {
@@ -33,6 +31,8 @@ namespace Infrastructure.Database
         {
             get => _health;
             set => _health = value;
+            
+            //# TODO: Raise event on 0 health in a future commit
         }
 
         public int Score

@@ -96,7 +96,7 @@ namespace Gameplay.Obstacles.Abstractions
         public virtual float Health
         {
             get { return _health; }
-            set { _health = Mathf.Max(value, 0); }
+            set { }
         }
 
         #endregion
